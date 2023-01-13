@@ -5,7 +5,6 @@ import { css } from "@emotion/css";
 
 const Table = ({ className, children }) => {
   const cssClass = className;
-  console.log(cssClass);
   return (
     <Wrapper>
       <TableInner

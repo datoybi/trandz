@@ -153,6 +153,7 @@ const YouTubeTrend = forwardRef((_, youtubeRef) => {
   const youtubeList = youtubeJSON;
   // console.log(JSON.stringify(youtubeList));
 
+  console.log(youtubeList);
   const contentsHtml = youtubeList.map((el, index) => (
     <Item key={el.videoId}>
       <a href={`${YOUTUBE_PLAY_URL}${el.videoId}`} target="_blank" rel="noopener noreferrer">
@@ -182,10 +183,10 @@ const YouTubeTrend = forwardRef((_, youtubeRef) => {
   return (
     <Section ref={youtubeRef}>
       <Wrapper>
-        <SectionTitle>
+        <h1 className="section__title">
           24시간 동안 한국에서 <br />
           가장 많이 본 유튜브를 시청하세요.
-        </SectionTitle>
+        </h1>
         <List>{contentsHtml}</List>
       </Wrapper>
     </Section>
@@ -202,20 +203,6 @@ const Wrapper = styled.div`
   margin-bottom: 100px;
   margin-top: 100px;
   width: 980px;
-`;
-
-const SectionTitle = styled.h1`
-  margin-bottom: 48px;
-  margin-top: 48px;
-  font-size: 40px;
-  letter-spacing: 0.009em;
-  line-height: 50px;
-  font-family: "Pretendard Variable";
-  font-variation-settings: "wght" 1000, "wdth" 500, "GRAD" 200;
-  background: linear-gradient(to right, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  white-space: pre-wrap;
 `;
 
 const List = styled.ol`

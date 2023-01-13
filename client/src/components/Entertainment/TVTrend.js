@@ -34,10 +34,10 @@ const TVTrend = () => {
   return (
     <Section>
       <Wrapper>
-        <SectionTitle>
+        <h1 className="section__title">
           한 주간 높은 시청률을 기록한
           <br /> TV 프로그램을 알아보세요.
-        </SectionTitle>
+        </h1>
         <TableWrapper>{tableHtml}</TableWrapper>
       </Wrapper>
     </Section>
@@ -53,20 +53,6 @@ const Section = styled.section`
 const Wrapper = styled.div`
   width: 980px;
   margin-bottom: 100px;
-`;
-
-const SectionTitle = styled.h1`
-  margin-bottom: 48px;
-  margin-top: 48px;
-  font-size: 40px;
-  letter-spacing: 0.009em;
-  line-height: 50px;
-  font-family: "Pretendard Variable";
-  font-variation-settings: "wght" 1000, "wdth" 500, "GRAD" 200;
-  background: linear-gradient(to right, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  white-space: pre-wrap;
 `;
 
 const TableWrapper = styled.div`

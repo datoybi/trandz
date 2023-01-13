@@ -18,7 +18,7 @@
 
 	[[redirects]]
 	from = "/music_proxy/*"
-  to = "https://www.melon.com/:splat"
+  to = "https://music.bugs.co.kr/:splat"
   status = 200
   force = true
 

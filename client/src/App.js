@@ -25,12 +25,17 @@ const App = () => {
   useEffect(() => {
     const initData = async () => {
       Promise.all([
-        await dispatch(fetchKeyword()),
-        await dispatch(fetchTopNews()),
-        await dispatch(fetchMovie()),
-        // await dispatch(fetchYoutube()),
-        await dispatch(fetchMusic()),
-        await dispatch(fetchTV()),
+        fetch("/api")
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+          }),
+        // await dispatch(fetchKeyword()),
+        // await dispatch(fetchTopNews()),
+        // await dispatch(fetchMovie()),
+        // // await dispatch(fetchYoutube()),
+        // await dispatch(fetchMusic()),
+        // await dispatch(fetchTV()),
       ]).then(setIsLoading(false));
     };
     initData();

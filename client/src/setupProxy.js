@@ -23,10 +23,9 @@ module.exports = function (app) {
       changeOrigin: true,
     }),
   );
-
   app.use(
-    createProxyMiddleware("/chart/", {
-      target: "https://www.melon.com",
+    createProxyMiddleware("/chart/track/week/total", {
+      target: "https://music.bugs.co.kr",
       changeOrigin: true,
     }),
   );
@@ -38,10 +37,30 @@ module.exports = function (app) {
     }),
   );
 
+  const proxyTable = {
+    "m.search.naver": "http://localhost:3000",
+    "m.search.naver/search.naver": "http://localhost:3000",
+  };
+
   app.use(
     createProxyMiddleware("/search.naver", {
       target: "https://search.naver.com",
       changeOrigin: true,
+      hostRewrite: "https://search.naver.com",
     }),
   );
+
+  // const rewriteFn = function (path, req) {
+  //   return path.replace("/m.search.naver", "/search.naver");
+  // };
+
+  // const options = {
+  //   // 프록시 대상 호스트
+  //   target: "https://m.search.naver.com",
+  //   pathRewrite: "/search.naver",
+  //   logger: console,
+  //   changeOrigin: true,
+  // };
+
+  // app.use(createProxyMiddleware("/m.search.naver", options));
 };

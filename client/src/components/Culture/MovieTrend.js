@@ -42,10 +42,10 @@ const MovieTrend = forwardRef((_, movieRef) => {
   return (
     <Section ref={movieRef}>
       <Wrapper>
-        <SectionTitle>
+        <h1 className="section__title">
           요즘 상영하는 영화와 <br />
           예매 순위를 알아보세요.
-        </SectionTitle>
+        </h1>
         <div>
           <CarouselWrapper>{movieHTML}</CarouselWrapper>
           {carouselIndex === 0 && (
@@ -74,20 +74,6 @@ const Wrapper = styled.div`
   margin-bottom: 20px;
   margin-top: 100px;
   width: 980px;
-`;
-
-const SectionTitle = styled.h1`
-  margin-bottom: 48px;
-  margin-top: 48px;
-  font-size: 40px;
-  letter-spacing: 0.009em;
-  line-height: 50px;
-  font-family: "Pretendard Variable";
-  font-variation-settings: "wght" 1000, "wdth" 500, "GRAD" 200;
-  background: linear-gradient(to right, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  white-space: pre-wrap;
 `;
 
 const CarouselWrapper = styled.div`

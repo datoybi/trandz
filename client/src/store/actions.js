@@ -1,18 +1,10 @@
 import { actions } from "./slice";
-import {
-  keywordCrawling,
-  newsCrawling,
-  youtubeFirstCrawling,
-  youtubeSecondCrawling,
-  songCrawling,
-  movieCrawling,
-  TVCrawling,
-} from "./crawling";
+import { keywordCrawling, newsCrawling, youtubeFirstCrawling, youtubeSecondCrawling, musicCrawling, movieCrawling, TVCrawling } from "./crawling";
 import { sendRequest } from "../utils/http";
 import ERROR_MESSAGES from "../constants/errorMessage";
 
 const KEYWORD_ENDPOINT = "/trends/trendingsearches/daily/rss?geo=KR";
-const MUSIC_ENDPOINT = "/chart/";
+const MUSIC_ENDPOINT = "/chart/track/week/total";
 const MOVIE_ENDPOINT = "/ranking/reservation";
 const TV_ENDPOINT = "/search.naver?where=nexearch&sm=tab_etc&mra=blUw&qvt=0&query=주간%20시청률";
 const NEWS_JSON = "/mostread.json";
@@ -62,7 +54,7 @@ export const fetchMusic = () => {
     const musicProxy = window.location.hostname === "localhost" ? "" : "/music_proxy";
     const url = `${musicProxy}${MUSIC_ENDPOINT}`;
     const htmlString = await sendRequest(url, ERROR_MESSAGES.MUSIC_FETCH_ERROR);
-    const result = songCrawling(htmlString);
+    const result = musicCrawling(htmlString);
     dispatch(actions.getMusicList(result));
   };
 };

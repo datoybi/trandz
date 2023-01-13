@@ -36,9 +36,7 @@ export const newsCrawling = records => {
   return Object.entries(records).reduce((acc, [_, value], index) => {
     if (index >= MAX_TOP_NEWS) return acc;
     const { promo } = value;
-    const headlines = !promo.headlines.shortHeadline
-      ? promo.headlines.seoHeadline
-      : promo.headlines.shortHeadline;
+    const headlines = !promo.headlines.shortHeadline ? promo.headlines.seoHeadline : promo.headlines.shortHeadline;
     let url = !promo.locators.assetUri ? promo.locators.canonicalUrl : promo.locators.assetUri;
 
     if (url.includes(NEWS_BASE_URL)) [, url] = url.split(NEWS_BASE_URL);
@@ -99,16 +97,16 @@ export const youtubeSecondCrawling = htmlString => {
   return newSecondResult;
 };
 
-export const songCrawling = htmlString => {
+export const musicCrawling = htmlString => {
   const result = [];
   const $ = cheerio.load(htmlString);
 
-  $(".service_list_song .lst50").each(function (index, el) {
+  $(".list.trackList.byChart > tbody > tr").each(function (index, el) {
     if (index >= MAX_SONG) return;
-    const album = $(el).find("a:eq(0)").attr("title"); // 엘범명
-    const albumCover = $(el).find("a:eq(0)>img").attr("src"); // 엘범명
-    const title = $(el).find(".ellipsis:eq(0)").text().trim(); // 노래명
-    const singer = $(el).find("a:eq(3)").text(); // 가수
+    const albumCover = $(el).find("img").attr("src");
+    const title = $(el).find(".title > a").text().trim();
+    const singer = $(el).find(".artist > a:eq(0)").text();
+    const album = $(el).find(".album").text();
     result.push({ album, title, singer, albumCover });
   });
 

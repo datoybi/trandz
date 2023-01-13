@@ -7,7 +7,7 @@ import Table from "../UI/Table";
 const DEFAULT_SONG_TITLE = ["BTS", "Dynamite"];
 
 const MusicTrend = () => {
-  const { musicList } = useSelector(state => state.trend);
+  const { musicList = [] } = useSelector(state => state.trend);
 
   const getBestMusic = () => {
     if (musicList.length === 0) return DEFAULT_SONG_TITLE;
@@ -27,10 +27,10 @@ const MusicTrend = () => {
   return (
     <Section>
       <Wrapper>
-        <SectionTitle>
+        <h1 className="section__title">
           지금 뜨는 노래는? <br />
           &apos;{bestSinger}&apos;의 &apos;{bestSong}&apos;🎶
-        </SectionTitle>
+        </h1>
         <Table>
           <colgroup>
             <Col />
@@ -44,7 +44,7 @@ const MusicTrend = () => {
               <Th>앨범</Th>
             </tr>
           </thead>
-          <tbody>{musicList.length === 0 ? emptyHtml : musicElement(musicList)}</tbody>
+          <TBody>{musicList.length === 0 ? emptyHtml : musicElement(musicList)}</TBody>
         </Table>
       </Wrapper>
     </Section>
@@ -62,21 +62,6 @@ const Wrapper = styled.div`
   width: 980px;
   margin-bottom: 100px;
 `;
-
-const SectionTitle = styled.h1`
-  margin-bottom: 48px;
-  margin-top: 48px;
-  font-size: 40px;
-  letter-spacing: 0.009em;
-  line-height: 50px;
-  font-family: "Pretendard Variable";
-  font-variation-settings: "wght" 1000, "wdth" 500, "GRAD" 200;
-  background: linear-gradient(to right, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  white-space: pre-wrap;
-`;
-
 const Col = styled.col`
   &:nth-of-type(1) {
     width: 10%;
@@ -114,4 +99,10 @@ const Th = styled.th`
 const EmptyStyle = styled.td`
   text-align: center;
   padding-bottom: 1rem;
+`;
+
+const TBody = styled.tbody`
+  & tr:nth-of-type(2n) {
+    background-color: #eaeaea;
+  }
 `;

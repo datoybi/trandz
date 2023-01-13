@@ -52,10 +52,10 @@ const KeywordsTrend = forwardRef((_, keywordRef) => {
   return (
     <Section ref={keywordRef}>
       <Wrapper>
-        <Title>
+        <h1 className="section__title">
           구글에 검색한 <br />
           인기 급상승 키워드를 확인해보세요.
-        </Title>
+        </h1>
         <Contents ref={keywordContainer}>
           <ul>{keywordElement}</ul>
         </Contents>
@@ -78,20 +78,6 @@ const Section = styled.section`
 const Wrapper = styled.div`
   width: 980px;
   margin-top: 160px;
-`;
-
-const Title = styled.h1`
-  margin-bottom: 48px;
-  margin-top: 48px;
-  font-size: 40px;
-  letter-spacing: 0.009em;
-  line-height: 50px;
-  font-family: "Pretendard Variable";
-  font-variation-settings: "wght" 1000, "wdth" 500, "GRAD" 200;
-  background: linear-gradient(to right, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  white-space: pre-wrap;
 `;
 
 const Contents = styled.div`
