@@ -153,7 +153,7 @@ const YouTubeTrend = forwardRef((_, youtubeRef) => {
   const youtubeList = youtubeJSON;
   // console.log(JSON.stringify(youtubeList));
 
-  console.log(youtubeList);
+  // console.log(youtubeList);
   const contentsHtml = youtubeList.map((el, index) => (
     <Item key={el.videoId}>
       <a href={`${YOUTUBE_PLAY_URL}${el.videoId}`} target="_blank" rel="noopener noreferrer">
