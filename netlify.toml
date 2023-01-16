@@ -1,5 +1,5 @@
-[[redirects]];
-from = '/proxy/*';
-to = 'https://trendz-api.herokuapp.com/:splat';
-status = 200;
+[[redirects]]
+from = '/proxy/*'
+to = 'https://trendz-api.herokuapp.com/:splat'
+status = 200
 force = true
