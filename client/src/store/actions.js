@@ -2,11 +2,11 @@ import { actions } from "./slice";
 import { sendRequest } from "../utils/http";
 import ERROR_MESSAGES from "../constants/errorMessage";
 
-export const fetchKeyword = () => {
-  // const tvProxy = window.location.hostname === "localhost" ? "" : "/tv_proxy";
+const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
 
+export const fetchKeyword = () => {
   return async dispatch => {
-    const url = "/keywords";
+    const url = `${PROXY}/keywords`;
     const result = await sendRequest(url, ERROR_MESSAGES.KEYWORD_FETCH_ERROR);
     dispatch(actions.getKeyWord(result));
   };
@@ -14,7 +14,7 @@ export const fetchKeyword = () => {
 
 export const fetchTopNews = () => {
   return async dispatch => {
-    const url = "/news";
+    const url = `${PROXY}/news`;
     const result = await sendRequest(url, ERROR_MESSAGES.NEWS_FETCH_ERROR);
     dispatch(actions.getNews(result));
   };
@@ -22,7 +22,7 @@ export const fetchTopNews = () => {
 
 export const fetchYoutube = () => {
   return async dispatch => {
-    const url = "/youtube";
+    const url = `${PROXY}/youtube`;
     const result = await sendRequest(url, ERROR_MESSAGES.YOUTUBE_FETCH_ERROR);
     dispatch(actions.getYoutube(result));
   };
@@ -30,7 +30,7 @@ export const fetchYoutube = () => {
 
 export const fetchMusic = () => {
   return async dispatch => {
-    const url = "/music";
+    const url = `${PROXY}/music`;
     const result = await sendRequest(url, ERROR_MESSAGES.MUSIC_FETCH_ERROR);
     dispatch(actions.getMusicList(result));
   };
@@ -38,7 +38,7 @@ export const fetchMusic = () => {
 
 export const fetchMovie = () => {
   return async dispatch => {
-    const url = `/movie`;
+    const url = `${PROXY}/movie`;
     const result = await sendRequest(url, ERROR_MESSAGES.MOVIE_FETCH_ERROR);
     dispatch(actions.getMovieList(result));
   };
@@ -46,7 +46,7 @@ export const fetchMovie = () => {
 
 export const fetchTV = () => {
   return async dispatch => {
-    const url = `/tv`;
+    const url = `${PROXY}/tv`;
     const result = await sendRequest(url, ERROR_MESSAGES.TV_FETCH_ERROR);
     dispatch(actions.getTVList(result));
   };
