@@ -10,7 +10,7 @@ const DISPLAY_COUNT = 10;
 const MovieTrend = forwardRef((_, movieRef) => {
   const items = useRef();
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const { movieList } = useSelector(state => state.trend);
+  const { movieList = [] } = useSelector(state => state.trend);
 
   const firstMovieList = movieList.filter((_, index) => index < DISPLAY_COUNT);
   const secondMovieList = movieList.filter((_, index) => index >= DISPLAY_COUNT);

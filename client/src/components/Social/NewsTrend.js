@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { NEWS_BASE_URL } from "../../constants/url";
 
 const NewsTrend = () => {
-  const { news } = useSelector(state => state.trend);
+  const { news = [] } = useSelector(state => state.trend);
 
   const newsHTML = news.map(([title, url]) => (
     <a href={`${NEWS_BASE_URL}${url}`} key={`${title}_${url}`} target="_blank" rel="noopener noreferrer">

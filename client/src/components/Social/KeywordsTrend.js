@@ -10,8 +10,8 @@ import loadIcon from "../../assets/plus_icon.png";
 const KeywordsTrend = forwardRef((_, keywordRef) => {
   const keywordContainer = useRef();
   const [keywordHeight, setKeywordHeight] = useState([]);
-  const { keywords } = useSelector(state => state.trend);
-  const { keywordCount } = useSelector(state => state.trend);
+  const { keywords = [] } = useSelector(state => state.trend);
+  const { keywordCount = 0 } = useSelector(state => state.trend);
   const dispatch = useDispatch();
 
   console.log(keywords);

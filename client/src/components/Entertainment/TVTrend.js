@@ -7,7 +7,7 @@ import TVElement from "./TVElement";
 const TABLE_COUNT = 10;
 
 const TVTrend = () => {
-  const { TVList } = useSelector(state => state.trend);
+  const { TVList = [] } = useSelector(state => state.trend);
   const firstTvList = TVList.filter((_, index) => index < TABLE_COUNT);
   const secondTvList = TVList.filter((_, index) => index >= TABLE_COUNT);
 
