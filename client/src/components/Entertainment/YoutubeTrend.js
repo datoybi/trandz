@@ -149,9 +149,9 @@ const youtubeJSON = [
 ];
 
 const YouTubeTrend = forwardRef((_, youtubeRef) => {
-  // const { youtubeList } = useSelector(state => state.trend);
-  const youtubeList = youtubeJSON;
-  // console.log(JSON.stringify(youtubeList));
+  const { youtubeList } = useSelector(state => state.trend);
+  // const youtubeList = youtubeJSON;
+  console.log(JSON.stringify(youtubeList));
 
   // console.log(youtubeList);
   const contentsHtml = youtubeList.map((el, index) => (
