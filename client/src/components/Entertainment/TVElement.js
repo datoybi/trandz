@@ -74,6 +74,10 @@ const TableWrapper = styled.div`
   width: 50%;
   max-width: 600px;
   margin-right: 20px;
+
+  @media (max-width: 915px) {
+    width: 700vw;
+  }
 `;
 
 const Th = styled.th`
@@ -87,7 +91,7 @@ const Th = styled.th`
     if (children === "프로그램") {
       neWidth = "70%";
     } else if (children === "시청률") {
-      neWidth = "40%";
+      neWidth = "50%";
     }
     return neWidth;
   }};
@@ -95,21 +99,25 @@ const Th = styled.th`
 
 const Col = styled.col`
   &:nth-of-type(1) {
-    width: 32%;
+    width: 47%;
   }
 
   &:nth-of-type(2) {
-    width: 55%;
+    width: 80%;
   }
 
   &:nth-of-type(3) {
-    width: 30%;
+    width: 25%;
   }
 `;
 
 const TBody = styled.tbody`
   & tr:nth-of-type(2n) {
     background-color: #eaeaea;
+  }
+
+  @media (max-width: 915px) {
+    font-size: 0.8rem;
   }
 `;
 

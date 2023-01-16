@@ -147,6 +147,7 @@ const defaultStyle = css`
 
   main {
     width: 100%;
+    height: 100%;
   }
 
   article {
@@ -172,10 +173,6 @@ const defaultStyle = css`
     animation: fadeIn 2s;
   }
 
-  .blur {
-    filter: blur(8px);
-  }
-
   .blind {
     overflow: hidden;
     position: absolute;
@@ -197,6 +194,7 @@ const defaultStyle = css`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     white-space: pre-wrap;
+    word-break: keep-all;
   }
 
   @keyframes gradient {

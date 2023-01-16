@@ -14,11 +14,15 @@ export default Home;
 
 const Wrapper = styled.div`
   display: flex;
-  width: 100%;
   height: 70%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 `;
 
 const Text = styled.h1`
@@ -33,4 +37,10 @@ const Text = styled.h1`
   animation: gradient 10s ease infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: ${props => (props.subText ? "2rem" : "3rem")};
+    /* padding-left: 10px;
+    padding-right: 10px; */
+  }
 `;

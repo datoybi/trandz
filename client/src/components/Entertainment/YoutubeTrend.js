@@ -149,11 +149,10 @@ const youtubeJSON = [
 ];
 
 const YouTubeTrend = forwardRef((_, youtubeRef) => {
-  const { youtubeList = [] } = useSelector(state => state.trend);
-  // const youtubeList = youtubeJSON;
-  console.log(JSON.stringify(youtubeList));
+  // const { youtubeList = [] } = useSelector(state => state.trend);
+  const youtubeList = youtubeJSON;
+  // console.log(JSON.stringify(youtubeList));
 
-  // console.log(youtubeList);
   const contentsHtml = youtubeList.map((el, index) => (
     <Item key={el.videoId}>
       <a href={`${YOUTUBE_PLAY_URL}${el.videoId}`} target="_blank" rel="noopener noreferrer">
@@ -203,11 +202,13 @@ const Wrapper = styled.div`
   margin-bottom: 100px;
   margin-top: 100px;
   width: 980px;
+  padding: 0 20px;
 `;
 
 const List = styled.ol`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const Item = styled.li`
@@ -219,15 +220,21 @@ const Item = styled.li`
   border-radius: 18px;
   margin-right: 20px;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
-
-  &:nth-of-type(4n) {
-    margin-right: 0;
-  }
+  transition: box-shadow 0.3s cubic-bezier(0, 0, 0.5, 1);
 
   &:hover {
     box-shadow: 2px 4px 16px rgb(0 0 0 / 16%);
     transform: scale3d(1.01, 1.01, 1.01);
+  }
+
+  @media (max-width: 1000px) {
+    width: 17rem;
+    height: 16rem;
+  }
+
+  @media (max-width: 624px) {
+    width: 20rem;
+    height: 18rem;
   }
 `;
 
@@ -235,7 +242,7 @@ const YoutubeThumbnail = styled.div`
   position: relative;
 
   & > img {
-    width: 14rem;
+    width: 100%;
   }
 `;
 
@@ -284,6 +291,7 @@ const YoutubeTitle = styled.div`
   word-break: break-all;
   text-overflow: ellipsis;
 `;
+
 const YoutubeHost = styled.div`
   margin-top: 5px;
   color: gray;

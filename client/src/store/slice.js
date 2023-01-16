@@ -26,6 +26,10 @@ const slice = createSlice({
       state.keywordCount = totalKeyword < newCount ? totalKeyword : newCount;
     },
 
+    setKeywordCount(state) {
+      state.keywordCount = state.keywords.length;
+    },
+
     getNews(state, action) {
       state.news = action.payload;
     },

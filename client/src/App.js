@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import styled from "@emotion/styled";
 
 import "./App.css";
 import Nav from "./components/Layout/Nav";
@@ -12,9 +11,10 @@ import MovieTrend from "./components/Culture/MovieTrend";
 import MusicTrend from "./components/Culture/MusicTrend";
 import TVTrend from "./components/Entertainment/TVTrend";
 import YoutubeTrend from "./components/Entertainment/YoutubeTrend";
+import Loading from "./components/Layout/Loading";
 
 import { fetchKeyword, fetchMusic, fetchTopNews, fetchYoutube, fetchTV, fetchMovie } from "./store/actions";
-const REFRESH_DATA = 1000 * 60 * 12;
+const REFRESH_DATA = 1000 * 60 * 10;
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,15 +26,20 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      // Promise.all([
-      //   await dispatch(fetchKeyword()),
-      //   await dispatch(fetchTopNews()),
-      //   await dispatch(fetchYoutube()),
-      //   await dispatch(fetchMovie()),
-      //   await dispatch(fetchMusic()),
-      //   await dispatch(fetchTV()),
-      // ]).then(setIsLoading(false));
+      console.log("crawling start...");
+      Promise.all([
+        await dispatch(fetchKeyword()),
+        await dispatch(fetchTopNews()),
+        // await dispatch(fetchYoutube()),
+        // await dispatch(fetchMovie()),
+        // await dispatch(fetchMusic()),
+        // await dispatch(fetchTV()),
+      ]).then(setIsLoading(false));
+      setIsLoading(false);
+      console.log("crawling finish...");
     };
+
+    fetchData();
 
     const interval = setInterval(() => {
       fetchData();
@@ -44,23 +49,29 @@ const App = () => {
   }, []);
 
   return (
-    <div className={`App ${isLoading ? "blur" : ""}`}>
-      <header>
-        <Home />
-        <Nav refs={[keywordRef, youtubeRef, movieRef]} />
-      </header>
-      <main>
-        <article>
-          <KeywordsTrend ref={keywordRef} />
-          <NewsTrend />
-          <YoutubeTrend ref={youtubeRef} />
-          <TVTrend />
-          <MovieTrend ref={movieRef} />
-          <MusicTrend />
-        </article>
-      </main>
-      <Footer />
-    </div>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="App">
+          <header>
+            <Home />
+            <Nav refs={[keywordRef, youtubeRef, movieRef]} />
+          </header>
+          <main>
+            <article>
+              <KeywordsTrend ref={keywordRef} />
+              <NewsTrend />
+              <YoutubeTrend ref={youtubeRef} />
+              <TVTrend />
+              {/*<MovieTrend ref={movieRef} />
+              <MusicTrend /> */}
+            </article>
+          </main>
+          <Footer />
+        </div>
+      )}
+    </>
   );
 };
 

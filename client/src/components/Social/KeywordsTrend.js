@@ -6,6 +6,7 @@ import KeywordTrend from "./KeywordTrend";
 import { LOADING_KEYWORD_COUNT } from "../../constants/trendz";
 import { actions } from "../../store/slice";
 import loadIcon from "../../assets/plus_icon.png";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const KeywordsTrend = forwardRef((_, keywordRef) => {
   const keywordContainer = useRef();
@@ -13,8 +14,7 @@ const KeywordsTrend = forwardRef((_, keywordRef) => {
   const { keywords = [] } = useSelector(state => state.trend);
   const { keywordCount = 0 } = useSelector(state => state.trend);
   const dispatch = useDispatch();
-
-  console.log(keywords);
+  const { width, height } = useWindowDimensions();
 
   const calculateHeight = () => {
     const height = keywordHeight.reduce((acc, element, index) => {
@@ -22,12 +22,16 @@ const KeywordsTrend = forwardRef((_, keywordRef) => {
       return acc;
     }, 0);
 
-    keywordContainer.current.style.height = `${height}px`;
+    if (width > 600 && keywordCount !== keywords.length) keywordContainer.current.style.height = `${height}px`;
+    else {
+      keywordContainer.current.style.height = "auto";
+      dispatch(actions.setKeywordCount());
+    }
   };
 
   useEffect(() => {
     calculateHeight();
-  }, [keywordHeight, keywordCount]);
+  }, [keywordHeight, keywordCount, width]);
 
   const getHeight = height => {
     setKeywordHeight(prev => [...prev, height]);
@@ -61,11 +65,7 @@ const KeywordsTrend = forwardRef((_, keywordRef) => {
         <Contents ref={keywordContainer}>
           <ul>{keywordElement}</ul>
         </Contents>
-        {isVisibleLoadButton && (
-          <LoadButton type="button" onClick={loadKeyword}>
-            <img src={loadIcon} alt="더보기" />
-          </LoadButton>
-        )}
+        {isVisibleLoadButton && <LoadButton type="image" src={loadIcon} onClick={loadKeyword} alt="더보기" />}
       </Wrapper>
     </Section>
   );
@@ -80,33 +80,45 @@ const Section = styled.section`
 const Wrapper = styled.div`
   width: 980px;
   margin-top: 160px;
+  padding: 0 20px;
+
+  @media (max-width: 600px) {
+    margin-top: 100px;
+  }
 `;
 
 const Contents = styled.div`
   transition: all 0.4s ease-in-out;
   overflow: hidden;
+
+  @media (max-width: 600px) {
+    overflow: visible;
+  }
 `;
 
-const LoadButton = styled.button`
+const LoadButton = styled.input`
+  background-size: cover;
+  width: 40px;
   position: relative;
   display: block;
   margin: 0 auto;
   border: 0;
   cursor: pointer;
   background: transparent;
+  top: -21px;
+  transition: transform 0.3s;
+  margin-bottom: -40px;
 
   &:hover {
     opacity: 0.6;
   }
 
-  &:active > img {
+  &:active {
     transform: rotate(1turn);
   }
 
-  & > img {
-    width: 40px;
-    position: absolute;
-    top: -16.7px;
-    transition: transform 0.3s;
+  @media (max-width: 600px) {
+    display: none;
+    margin-bottom: 0;
   }
 `;

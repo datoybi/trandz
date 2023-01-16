@@ -88,8 +88,8 @@ const fixedStyle = css`
 `;
 
 const Tabs = styled.ul`
-  width: 100%;
   height: 50px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,6 +98,13 @@ const Tabs = styled.ul`
   z-index: 999;
 
   ${({ fixed }) => fixed && fixedStyle};
+
+  @media (max-width: 768px) {
+    width: calc(100% - 20px);
+    padding-left: 10px;
+    padding-right: 10px;
+    /* height: 40px; */
+  }
 `;
 
 const Tab = styled.li`
@@ -109,6 +116,12 @@ const Tab = styled.li`
 
   &:hover {
     cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 10px 0.7rem;
   }
 `;
 
@@ -123,6 +136,11 @@ const Logo = styled.li`
   font-family: "Pretendard Variable", Pretendard;
   font-size: 1.5rem;
   letter-spacing: -1px;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 10px 0.5rem;
+  }
 
   &:hover {
     cursor: pointer;

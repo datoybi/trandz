@@ -35,23 +35,25 @@ const Section = styled.section`
 `;
 
 const Wrapper = styled.div`
+  padding: 0 20px;
   width: 980px;
 `;
 
 const List = styled.ul`
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const Item = styled.li`
   box-shadow: 4px 12px 40px 6px rgb(0 0 0 / 9%);
   border-radius: 14px;
   padding: 20px;
-  margin-bottom: 1.6rem;
-  width: 130px;
-  height: 120px;
+  margin: 0.5rem 0.5rem;
+  width: 170px;
+  height: 170px;
   font-weight: 500;
+  box-sizing: border-box;
 
   & > p {
     font-size: 1.2rem;
@@ -66,5 +68,21 @@ const Item = styled.li`
 
   &:hover {
     box-shadow: 10px 10px 20px 0 rgb(0 0 0 / 4%), -10px 0 20px 0 rgb(0 0 0 / 4%);
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px;
+    width: 35vw;
+    height: 200px;
+  }
+
+  @media (max-width: 588px) {
+    padding: 25px;
+    width: 90vw;
+    height: 100px;
+
+    & > p {
+      font-size: 1rem;
+    }
   }
 `;

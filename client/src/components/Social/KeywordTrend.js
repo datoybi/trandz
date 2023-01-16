@@ -27,7 +27,10 @@ const KeywordTrend = ({ getHeight, keyword, pastPubDate }) => {
       {showDate && <KeywordDate>{currentDate}</KeywordDate>}
       <Wrapper>
         <KeywordTitle>{keyword.keyword}</KeywordTitle>
-        <KeywordTraffic>{keyword.traffic}회 이상 검색</KeywordTraffic>
+        <KeywordTraffic>
+          {keyword.traffic}
+          <TrafficContent>회 이상 검색</TrafficContent>
+        </KeywordTraffic>
         <KeywordNewsWrapper>
           <KeywordNews>{keywordNewsHtml}</KeywordNews>
           <Thumbnail>
@@ -80,6 +83,12 @@ const KeywordTraffic = styled.span`
   font-weight: 500;
 `;
 
+const TrafficContent = styled.span`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
 const KeywordNewsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -91,6 +100,10 @@ const KeywordNewsWrapper = styled.div`
 
 const KeywordNews = styled.div`
   width: 87%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const NewsLink = styled.a`
@@ -99,17 +112,22 @@ const NewsLink = styled.a`
 `;
 
 const NewsTitle = styled.span`
-  font-size: 18px;
+  font-size: 1em;
   font-weight: 600;
   display: inline-block;
+  line-height: 1.3rem;
 `;
 
 const NewsSource = styled.span`
-  font-size: 18px;
+  font-size: 1em;
   font-weight: 600;
   display: inline-block;
   margin-right: 10px;
   float: right;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Thumbnail = styled.span`
@@ -120,6 +138,10 @@ const Thumbnail = styled.span`
 
   & > img {
     transition: all 0.2s linear;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 

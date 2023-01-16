@@ -45,6 +45,10 @@ const Text = styled.span`
   -webkit-text-fill-color: transparent;
   margin-top: 8px;
   font-size: 0.9rem;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const UnderlineText = styled.a`
