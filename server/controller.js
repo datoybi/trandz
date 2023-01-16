@@ -1,4 +1,3 @@
-const request = require("request");
 const puppeteer = require("puppeteer");
 const axios = require("axios");
 const { keywordsCrawling, musicCrawling, TVCrawling, newsCrawling, youtubeCrawling, movieCrawling } = require("./crawling");
@@ -36,7 +35,7 @@ const getNews = async (req, res) => {
 
 const getYoutube = async (req, res) => {
   (async () => {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"], headless: true });
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 1800 });
     await page.goto(YOUTUBE_TREND_URL);
@@ -55,7 +54,7 @@ const getYoutube = async (req, res) => {
 
 const getMovie = async (req, res) => {
   (async () => {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"], headless: true });
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 1000 });
     await page.goto(MOVIE_URL);
@@ -70,7 +69,7 @@ const getMovie = async (req, res) => {
 
 const getMusic = async (req, res) => {
   (async () => {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"], headless: true });
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 1000 });
     await page.goto(MUSIC_URL);
@@ -85,7 +84,7 @@ const getMusic = async (req, res) => {
 
 const getTV = async (req, res) => {
   (async () => {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"], headless: true });
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 1000 });
     await page.goto(TV_URL);

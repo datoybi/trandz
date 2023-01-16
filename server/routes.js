@@ -2,12 +2,14 @@ const express = require("express");
 const router = express.Router();
 const { getKeywords, getNews, getYoutube, getTV, getMovie, getMusic } = require("./controller");
 
-router.get("/", (req, res) => {});
-router.get("/api/keywords", getKeywords);
-router.get("/api/news", getNews);
-router.get("/api/youtube", getYoutube);
-router.get("/api/movie", getMovie);
-router.get("/api/music", getMusic);
-router.get("/api/tv", getTV);
+router.get("/", (req, res) => {
+  res.send("<h1>서버 구동 중 ...</h1>");
+});
+router.get("/keywords", getKeywords);
+router.get("/news", getNews);
+router.get("/youtube", getYoutube);
+router.get("/movie", getMovie);
+router.get("/music", getMusic);
+router.get("/tv", getTV);
 
 module.exports = router;
