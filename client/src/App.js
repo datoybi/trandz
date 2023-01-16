@@ -14,6 +14,7 @@ import TVTrend from "./components/Entertainment/TVTrend";
 import YoutubeTrend from "./components/Entertainment/YoutubeTrend";
 
 import { fetchKeyword, fetchMusic, fetchTopNews, fetchYoutube, fetchTV, fetchMovie } from "./store/actions";
+const REFRESH_DATA = 60000;
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,20 +25,19 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("run");
       setIsLoading(true);
       Promise.all([
         await dispatch(fetchKeyword()),
-        // await dispatch(fetchTopNews()),
-        // // await dispatch(fetchYoutube()),
-        // await dispatch(fetchMovie()),
-        // await dispatch(fetchMusic()),
-        // await dispatch(fetchTV()),
+        await dispatch(fetchTopNews()),
+        await dispatch(fetchYoutube()),
+        await dispatch(fetchMovie()),
+        await dispatch(fetchMusic()),
+        await dispatch(fetchTV()),
       ]).then(setIsLoading(false));
     };
     const interval = setInterval(() => {
       fetchData();
-    }, 5000);
+    }, REFRESH_DATA);
 
     return () => clearInterval(interval);
   }, []);
