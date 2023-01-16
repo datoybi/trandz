@@ -14,7 +14,7 @@ import TVTrend from "./components/Entertainment/TVTrend";
 import YoutubeTrend from "./components/Entertainment/YoutubeTrend";
 
 import { fetchKeyword, fetchMusic, fetchTopNews, fetchYoutube, fetchTV, fetchMovie } from "./store/actions";
-const REFRESH_DATA = 60000;
+const REFRESH_DATA = 1000 * 10;
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
