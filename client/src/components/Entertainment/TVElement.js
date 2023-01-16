@@ -7,7 +7,7 @@ import { TV_BASE_URL } from "../../constants/url";
 const TVElement = ({ tvList = [], addTVRankCount, changeTVRank, getRank }) => {
   const emptyHtml = (
     <tr>
-      <td colSpan="4">데이터가 없습니다.</td>
+      <EmptyStyle colSpan="4">데이터가 없습니다.</EmptyStyle>
     </tr>
   );
 
@@ -139,4 +139,9 @@ const Tr = styled.tr`
     padding-left: 0;
     padding-right: 0;
   }
+`;
+
+const EmptyStyle = styled.td`
+  text-align: center;
+  padding-bottom: 1rem;
 `;

@@ -23,22 +23,23 @@ const App = () => {
   const youtubeRef = useRef(null);
 
   useEffect(() => {
-    const initData = async () => {
+    const fetchData = async () => {
+      console.log("run");
+      setIsLoading(true);
       Promise.all([
-        // fetch("/api")
-        //   .then(response => response.json())
-        //   .then(data => {
-        //     console.log(data);
-        //   }),
         await dispatch(fetchKeyword()),
-        await dispatch(fetchTopNews()),
-        // await dispatch(fetchYoutube()),
-        await dispatch(fetchMovie()),
-        await dispatch(fetchMusic()),
-        await dispatch(fetchTV()),
+        // await dispatch(fetchTopNews()),
+        // // await dispatch(fetchYoutube()),
+        // await dispatch(fetchMovie()),
+        // await dispatch(fetchMusic()),
+        // await dispatch(fetchTV()),
       ]).then(setIsLoading(false));
     };
-    initData();
+    const interval = setInterval(() => {
+      fetchData();
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
