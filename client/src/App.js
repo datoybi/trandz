@@ -65,7 +65,7 @@ const App = () => {
               <YoutubeTrend ref={youtubeRef} />
               <TVTrend />
               <MovieTrend ref={movieRef} />
-              {/* <MusicTrend /> */}
+              <MusicTrend />
             </article>
           </main>
           <Footer />

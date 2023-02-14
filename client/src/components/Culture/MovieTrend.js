@@ -1,5 +1,4 @@
-import React, { useRef, useState, forwardRef, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useRef, useState, forwardRef } from "react";
 import styled from "@emotion/styled";
 import carouselNextIcon from "../../assets/next_icon.png";
 import carouselPrevIcon from "../../assets/prev_icon.png";

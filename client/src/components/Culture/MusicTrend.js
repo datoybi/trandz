@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import MusicElement from "./MusicElement";
 import Table from "../UI/Table";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const DEFAULT_SONG_TITLE = ["BTS", "Dynamite"];
 const musicJSON = [
@@ -132,6 +133,7 @@ const MusicTrend = () => {
   // const { musicList = [] } = useSelector(state => state.trend);
   const musicList = musicJSON;
   // console.log(JSON.stringify(musicList));
+  const { width, height } = useWindowDimensions();
 
   const getBestMusic = () => {
     if (musicList.length === 0) return DEFAULT_SONG_TITLE;
@@ -147,7 +149,7 @@ const MusicTrend = () => {
   );
 
   const musicElement = list => list.map((song, index) => <MusicElement key={`${song.title}_${song.album}`} song={song} rating={index + 1} />);
-
+  const colSpan = width > 550 ? 3 : 2;
   return (
     <Section>
       <Wrapper>
@@ -163,7 +165,7 @@ const MusicTrend = () => {
           </colgroup>
           <thead>
             <tr>
-              <Th colSpan="3">노래</Th>
+              <Th colSpan={colSpan}>노래</Th>
               <Th>가수</Th>
               <Th>앨범</Th>
             </tr>
@@ -185,18 +187,41 @@ const Section = styled.section`
 const Wrapper = styled.div`
   width: 980px;
   margin-bottom: 100px;
+  padding: 0 20px;
 `;
 const Col = styled.col`
   &:nth-of-type(1) {
     width: 10%;
+
+    @media (max-width: 950px) {
+      width: 10%;
+    }
+
+    @media (max-width: 550px) {
+      width: 10%;
+    }
   }
 
   &:nth-of-type(2) {
     width: 7%;
+
+    @media (max-width: 950px) {
+      width: 15%;
+    }
+
+    @media (max-width: 550px) {
+      width: 25%;
+    }
   }
 
   &:nth-of-type(3) {
     width: 35%;
+  }
+
+  @media (max-width: 950px) {
+    &:nth-of-type(3) {
+      display: none;
+    }
   }
 `;
 
@@ -218,6 +243,12 @@ const Th = styled.th`
         return "0%";
     }
   }};
+
+  @media (max-width: 950px) {
+    &:nth-of-type(3) {
+      display: none;
+    }
+  }
 `;
 
 const EmptyStyle = styled.td`
@@ -228,5 +259,5 @@ const EmptyStyle = styled.td`
 const TBody = styled.tbody`
   & tr:nth-of-type(2n) {
     background-color: #eaeaea;
-  }
+
 `;
