@@ -9,6 +9,7 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 app.use("/", indexRouter);
+// dataSetting();
 
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;

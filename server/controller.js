@@ -1,13 +1,23 @@
 const puppeteer = require("puppeteer");
 const axios = require("axios");
 const { keywordsCrawling, musicCrawling, TVCrawling, newsCrawling, youtubeCrawling, movieCrawling } = require("./crawling");
+// const { keywordData, newsData, youtubeData, musicData, movieData, tvData } = require("./dataSetting");
 
+// const { counter } = require("./db/db");
 const KEYWORD_URL = "https://trends.google.co.kr/trends/trendingsearches/daily/rss?geo=KR";
 const NEWS_URL = "https://www.bbc.com/korean/mostread.json";
 const YOUTUBE_TREND_URL = "https://kr.noxinfluencer.com/youtube-video-rank/top-kr-all-video-day";
 const MOVIE_URL = "https://movie.daum.net/ranking/reservation";
 const MUSIC_URL = "https://music.bugs.co.kr/chart/track/week/total";
 const TV_URL = " https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=blUw&qvt=0&query=주간%20시청률";
+
+let keywordData = [];
+let newsData = {};
+let youtubeData = {};
+let musicData = {};
+let movieData = [];
+let tvData = [];
+let counter = 1;
 
 const sendRequest = async (url, errorMessage) => {
   try {
@@ -21,10 +31,26 @@ const sendRequest = async (url, errorMessage) => {
   return false;
 };
 
-const getKeywords = async (req, res) => {
+setInterval(async () => {
+  console.log("run!!!!!!!!!!!!!!!!");
   const htmlString = await sendRequest(KEYWORD_URL);
-  const result = keywordsCrawling(htmlString);
-  res.json(result);
+  keywordData = [...keywordsCrawling(htmlString)];
+  // keywordData = { test: counter };
+  // counter += 1;
+  console.log(keywordData);
+  // newsData = [...newsCrawling];
+  // youtubeData = [...youtubeCrawling];
+  // musicData = [...musicCrawling];
+  // movieData = [...movieCrawling];
+  // tvData = [...TVCrawling];
+}, 2000);
+
+const getKeywords = async (req, res) => {
+  // const htmlString = await sendRequest(KEYWORD_URL);
+  // const result = keywordsCrawling(htmlString);
+  // console.log(keywordData);
+
+  res.json(keywordData);
 };
 
 const getNews = async (req, res) => {
@@ -97,6 +123,19 @@ const getTV = async (req, res) => {
   })();
 };
 
+// 저절로 세팅해둘 것
+// setInterval(() => {
+//   counter += 1;
+//   console.log("increase: " + counter);
+// }, 1000);
+// 1000
+// 1000 * 36000 = 1시간
+
+const getTest = async (req, res) => {
+  console.log("called : " + counter);
+  res.json({ counter });
+};
+
 module.exports = {
   getKeywords,
   getNews,
@@ -104,4 +143,5 @@ module.exports = {
   getMovie,
   getMusic,
   getTV,
+  getTest,
 };
