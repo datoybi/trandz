@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import thumbUp from "../../assets/thumbs-up.png";
+import noImage from "../../assets/ico_noimage.png";
 import { MOVIE_BASE_URL } from "../../constants/url";
 
 const MovieElement = ({ movie }) => {
@@ -10,7 +11,7 @@ const MovieElement = ({ movie }) => {
       <a href={`${MOVIE_BASE_URL}${movie.URL}`} target="_blank" rel="noopener noreferrer">
         <Poster>
           <PosterRanking>{movie.ranking}</PosterRanking>
-          <PosterImage alt={movie.title} src={movie.posterURL} />
+          {!movie.posterURL ? <EmptyPoster /> : <PosterImage alt={movie.title} src={movie.posterURL} />}
         </Poster>
         <Rating>
           <RatingImage alt="평점" src={thumbUp} />
@@ -34,12 +35,19 @@ MovieElement.propTypes = {
 
 export default MovieElement;
 
-const Movie = styled.div`
+const Movie = styled.li`
   margin-bottom: 20px;
+  width: 180px;
+  list-style: none;
+
+  @media (max-width: 950px) {
+  }
 `;
 
 const Poster = styled.div`
   position: relative;
+  width: 180px;
+  height: 258px;
 
   &:hover {
     opacity: 0.8;
@@ -58,9 +66,9 @@ const PosterRanking = styled.span`
 `;
 
 const PosterImage = styled.img`
-  width: 180px;
-  height: 258px;
+  width: 100%;
   border-radius: 10px;
+  height: 100%;
 `;
 
 const Rating = styled.div`
@@ -84,4 +92,12 @@ const Title = styled.span`
   font-size: 1rem;
   width: 180px;
   line-height: 20px;
+`;
+
+const EmptyPoster = styled.div`
+  background: #edeef0 url(${noImage}) no-repeat 50% 50%;
+  background-size: 44px 44px;
+  height: 100%;
+  border-radius: 10px;
+  z-index: 2;
 `;

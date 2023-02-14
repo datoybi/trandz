@@ -186,7 +186,13 @@ const YouTubeTrend = forwardRef((_, youtubeRef) => {
           24시간 동안 한국에서 <br />
           가장 많이 본 유튜브를 시청하세요.
         </h1>
-        <List>{contentsHtml}</List>
+        <List>
+          {contentsHtml}
+          <ItemContainer></ItemContainer>
+          <ItemContainer></ItemContainer>
+          <ItemContainer></ItemContainer>
+          <ItemContainer></ItemContainer>
+        </List>
       </Wrapper>
     </Section>
   );
@@ -207,18 +213,18 @@ const Wrapper = styled.div`
 
 const List = styled.ol`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+  flex-flow: row wrap;
 `;
 
 const Item = styled.li`
-  margin-bottom: 40px;
-  width: 14rem;
-  height: 14rem;
+  width: 230px;
+  height: 220px;
   white-space: normal;
+  margin: 0.4rem;
   box-shadow: 2px 4px 12px rgb(0 0 0 / 8%);
   border-radius: 18px;
-  margin-right: 20px;
+  margin-bottom: 40px;
   overflow: hidden;
   transition: box-shadow 0.3s cubic-bezier(0, 0, 0.5, 1);
 
@@ -227,14 +233,24 @@ const Item = styled.li`
     transform: scale3d(1.01, 1.01, 1.01);
   }
 
-  @media (max-width: 1000px) {
-    width: 17rem;
-    height: 16rem;
+  @media (max-width: 1011px) {
+    width: 300px;
+    height: 270px;
   }
+`;
 
-  @media (max-width: 624px) {
-    width: 20rem;
-    height: 18rem;
+const ItemContainer = styled.div`
+  margin: 0.45rem;
+  width: 230px;
+  height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+
+  @media (max-width: 1011px) {
+    width: 300px;
+    height: 270px;
   }
 `;
 

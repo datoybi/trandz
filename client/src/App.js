@@ -29,7 +29,7 @@ const App = () => {
       console.log("crawling start...");
       Promise.all([
         await dispatch(fetchKeyword()),
-        await dispatch(fetchTopNews()),
+        // await dispatch(fetchTopNews()),
         // await dispatch(fetchYoutube()),
         // await dispatch(fetchMovie()),
         // await dispatch(fetchMusic()),
@@ -64,8 +64,8 @@ const App = () => {
               <NewsTrend />
               <YoutubeTrend ref={youtubeRef} />
               <TVTrend />
-              {/*<MovieTrend ref={movieRef} />
-              <MusicTrend /> */}
+              <MovieTrend ref={movieRef} />
+              {/* <MusicTrend /> */}
             </article>
           </main>
           <Footer />

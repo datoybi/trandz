@@ -8,9 +8,7 @@ const NewsTrend = () => {
 
   const newsHTML = news.map(([title, url]) => (
     <a href={`${NEWS_BASE_URL}${url}`} key={`${title}_${url}`} target="_blank" rel="noopener noreferrer">
-      <Item>
-        <p>{title}</p>
-      </Item>
+      <Item>{title}</Item>
     </a>
   ));
 
@@ -20,7 +18,12 @@ const NewsTrend = () => {
         <h1 className="section__title">
           BBC Korea가 엄선한 <br />톱 뉴스를 접해보세요.
         </h1>
-        <List>{newsHTML}</List>
+        <List>
+          {newsHTML}
+          <NewsContainer></NewsContainer>
+          <NewsContainer></NewsContainer>
+          <NewsContainer></NewsContainer>
+        </List>
       </Wrapper>
     </Section>
   );
@@ -46,6 +49,9 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
   box-shadow: 4px 12px 40px 6px rgb(0 0 0 / 9%);
   border-radius: 14px;
   padding: 20px;
@@ -54,17 +60,12 @@ const Item = styled.li`
   height: 170px;
   font-weight: 500;
   box-sizing: border-box;
-
-  & > p {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    white-space: normal;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 25px;
-  }
+  font-size: 1.2rem;
+  white-space: normal;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 25px;
 
   &:hover {
     box-shadow: 10px 10px 20px 0 rgb(0 0 0 / 4%), -10px 0 20px 0 rgb(0 0 0 / 4%);
@@ -73,16 +74,22 @@ const Item = styled.li`
   @media (max-width: 768px) {
     padding: 40px;
     width: 35vw;
-    height: 200px;
   }
 
   @media (max-width: 588px) {
     padding: 25px;
     width: 90vw;
     height: 100px;
-
-    & > p {
-      font-size: 1rem;
-    }
+    font-size: 1rem;
   }
+`;
+
+const NewsContainer = styled.div`
+  margin: 0.5rem 0.5rem;
+  width: 170px;
+  height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 `;

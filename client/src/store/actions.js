@@ -6,7 +6,9 @@ const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
 
 export const fetchKeyword = () => {
   return async dispatch => {
-    const url = `${PROXY}/keywords`;
+    // const url = `${PROXY}/keywords`;
+    const url = `http://localhost:5000/keywords`;
+
     const result = await sendRequest(url, ERROR_MESSAGES.KEYWORD_FETCH_ERROR);
     dispatch(actions.getKeyWord(result));
   };
@@ -38,7 +40,9 @@ export const fetchMusic = () => {
 
 export const fetchMovie = () => {
   return async dispatch => {
-    const url = `${PROXY}/movie`;
+    // const url = `${PROXY}/movie`;
+    const url = `http://localhost:5000/movie`;
+
     const result = await sendRequest(url, ERROR_MESSAGES.MOVIE_FETCH_ERROR);
     dispatch(actions.getMovieList(result));
   };

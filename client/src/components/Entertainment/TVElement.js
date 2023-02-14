@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import Table from "../UI/Table";
 import { TV_BASE_URL } from "../../constants/url";
 
-const TVElement = ({ tvList = [], addTVRankCount, changeTVRank, getRank }) => {
+const TVElement = ({ tvList = [] }) => {
   const emptyHtml = (
     <tr>
       <EmptyStyle colSpan="4">데이터가 없습니다.</EmptyStyle>
@@ -15,21 +15,11 @@ const TVElement = ({ tvList = [], addTVRankCount, changeTVRank, getRank }) => {
     window.open(`${TV_BASE_URL}${url}`);
   };
 
-  const calculateRanking = (index, list) => {
-    if (index === 0) return;
-    if (list[index - 1].rate === list[index].rate) {
-      addTVRankCount();
-      return;
-    }
-    changeTVRank();
-  };
-
   const tableContentHtml = list =>
-    list.map((tv, index) => {
-      calculateRanking(index, list);
+    list.map(tv => {
       return (
-        <Tr key={`${getRank()}_${tv.title}`} onClick={() => handleOnClick(tv.url)}>
-          <td>{getRank()}</td>
+        <Tr key={`${tv.rank}_${tv.title}`} onClick={() => handleOnClick(tv.url)}>
+          <td>{tv.rank}</td>
           <td>
             <a href={`${TV_BASE_URL}${tv.url}`} target="_blank" rel="noopener noreferrer">
               {tv.title}
@@ -63,20 +53,25 @@ const TVElement = ({ tvList = [], addTVRankCount, changeTVRank, getRank }) => {
 
 TVElement.propTypes = {
   tvList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  addTVRankCount: PropTypes.func.isRequired,
-  changeTVRank: PropTypes.func.isRequired,
-  getRank: PropTypes.func.isRequired,
 };
 
 export default TVElement;
 
 const TableWrapper = styled.div`
-  width: 50%;
-  max-width: 600px;
-  margin-right: 20px;
+  width: 450px;
+
+  &:nth-of-type(1) {
+    margin-right: 20px;
+  }
 
   @media (max-width: 915px) {
-    width: 700vw;
+    width: 100%;
+    font-size: 0.9rem;
+
+    &:nth-of-type(1) {
+      margin-right: 0;
+      margin-bottom: 50px;
+    }
   }
 `;
 
@@ -89,17 +84,24 @@ const Th = styled.th`
   width: ${({ children }) => {
     let neWidth = "0%";
     if (children === "프로그램") {
-      neWidth = "70%";
+      neWidth = "17%";
     } else if (children === "시청률") {
-      neWidth = "50%";
+      neWidth = "40%";
     }
     return neWidth;
   }};
+
+  @media (max-width: 515px) {
+    width: 75%;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+  }
 `;
 
 const Col = styled.col`
   &:nth-of-type(1) {
-    width: 47%;
+    width: 55%;
   }
 
   &:nth-of-type(2) {
@@ -115,10 +117,6 @@ const TBody = styled.tbody`
   & tr:nth-of-type(2n) {
     background-color: #eaeaea;
   }
-
-  @media (max-width: 915px) {
-    font-size: 0.8rem;
-  }
 `;
 
 const Tr = styled.tr`
@@ -132,20 +130,40 @@ const Tr = styled.tr`
     padding-bottom: 20px;
   }
 
-  & > td:nth-of-type(1),
-  & > td:nth-of-type(4) {
+  & td:nth-of-type(1),
+  & td:nth-of-type(4) {
     padding-left: 35px;
     padding-right: 35px;
   }
 
-  & > td :nth-of-type(2) {
+  & td:nth-of-type(2) {
     padding-left: 10px;
     padding-right: 10px;
   }
 
-  & > td :nth-of-type(3) {
+  & td:nth-of-type(3) {
     padding-left: 0;
     padding-right: 0;
+  }
+
+  @media (max-width: 515px) {
+    & > td {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
+    & td:nth-of-type(1),
+    & td:nth-of-type(4) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    & td:nth-of-type(2) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    & td:nth-of-type(3) {
+      opacity: 0;
+    }
   }
 `;
 

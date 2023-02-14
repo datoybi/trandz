@@ -125,17 +125,33 @@ const movieCrawling = htmlString => {
   return result;
 };
 
+const calculateRanking = (result, rate, index, rank, rankCount) => {
+  if (result[index - 1].rate === rate) {
+    rankCount += 1;
+    return [rank, rankCount];
+  } else {
+    rank += rankCount;
+    return [rank, 1];
+  }
+};
+
 const TVCrawling = htmlString => {
   const $ = cheerio.load(htmlString);
   const result = [];
+  let rank = 1;
+  let rankCount = 1;
 
-  $(".tb_list > tbody tr").each(function (_, el) {
+  $(".tb_list > tbody tr").each(function (index, el) {
     const title = $(el).find("a").first().text();
     const cast = $(el).find("a:eq(1)").text();
     const rate = $(el).find(".rate").text();
     const url = $(el).find("a").first().attr("href");
 
-    result.push({ title, cast, rate, url });
+    if (index !== 0) {
+      [rank, rankCount] = calculateRanking(result, rate, index, rank, rankCount);
+    }
+
+    result.push({ title, cast, rate, url, rank });
   });
 
   return result;

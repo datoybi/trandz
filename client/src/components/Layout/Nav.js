@@ -28,6 +28,7 @@ const Nav = ({ refs }) => {
       block: "start",
     });
   };
+
   const handleEntertainClick = () => {
     youtubeRef.current.scrollIntoView({
       behavior: "smooth",
