@@ -62,3 +62,13 @@ export const fetchTV = () => {
     dispatch(actions.getTVList(result));
   };
 };
+
+export const fetchTest = () => {
+  return async dispatch => {
+    // const url = `${PROXY}/tv`;
+    const url = `http://localhost:5000/test`;
+    const result = await sendRequest(url, ERROR_MESSAGES.TV_FETCH_ERROR);
+    console.log(result);
+    // dispatch(actions.getTVList(result));
+  };
+};

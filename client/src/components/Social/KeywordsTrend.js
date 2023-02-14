@@ -15,7 +15,7 @@ const KeywordsTrend = forwardRef((_, keywordRef) => {
   const { keywordCount = 0 } = useSelector(state => state.trend);
   const dispatch = useDispatch();
   const { width, height } = useWindowDimensions();
-
+  console.log(keywords);
   const calculateHeight = () => {
     const height = keywordHeight.reduce((acc, element, index) => {
       if (keywordCount > index) return acc + element;
