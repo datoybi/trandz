@@ -1,4 +1,5 @@
 import React, { useRef, useState, forwardRef } from "react";
+import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import carouselNextIcon from "../../assets/next_icon.png";
 import carouselPrevIcon from "../../assets/prev_icon.png";
@@ -148,8 +149,8 @@ const movieJSON = [
 const MovieTrend = forwardRef((_, movieRef) => {
   const items = useRef();
   const [carouselIndex, setCarouselIndex] = useState(0);
-  // const { movieList = [] } = useSelector(state => state.trend);
   const movieList = movieJSON;
+  // const { movieList = [] } = useSelector(state => state.trend);
   // console.log(JSON.stringify(movieList));
   const { width, height } = useWindowDimensions();
   const DISPLAY_COUNT = 10;

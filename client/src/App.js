@@ -14,7 +14,7 @@ import YoutubeTrend from "./components/Entertainment/YoutubeTrend";
 import Loading from "./components/Layout/Loading";
 
 import { fetchKeyword, fetchMusic, fetchTopNews, fetchYoutube, fetchTV, fetchMovie } from "./store/actions";
-const REFRESH_DATA = 1000 * 60 * 10;
+const REFRESH_DATA = 1000 * 60 * 10; //  10분?
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +29,7 @@ const App = () => {
       console.log("crawling start...");
       Promise.all([
         await dispatch(fetchKeyword()),
-        // await dispatch(fetchTopNews()),
+        await dispatch(fetchTopNews()),
         // await dispatch(fetchYoutube()),
         // await dispatch(fetchMovie()),
         // await dispatch(fetchMusic()),
