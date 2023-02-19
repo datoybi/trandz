@@ -49,7 +49,6 @@ export const fetchMovie = () => {
     // const url = `${PROXY}/movie`;
     const url = `http://localhost:5000/movie`;
     const result = await sendRequest(url, ERROR_MESSAGES.MOVIE_FETCH_ERROR);
-    console.log(result);
     dispatch(actions.getMovieList(result));
   };
 };
@@ -68,7 +67,6 @@ export const fetchTest = () => {
     // const url = `${PROXY}/tv`;
     const url = `http://localhost:5000/test`;
     const result = await sendRequest(url, ERROR_MESSAGES.TV_FETCH_ERROR);
-    console.log(result);
     // dispatch(actions.getTVList(result));
   };
 };

@@ -46,8 +46,13 @@ const LoadingBar = styled.div`
   width: 16rem;
   padding: 0.2rem;
   border-radius: 360px;
-
   border: 0.2rem solid #6e6e73;
+
+  @media (max-width: 500px) {
+    display: flex;
+    width: 12rem;
+    flex-direction: column;
+  }
 `;
 
 const LoadingBarInner = styled.span`
