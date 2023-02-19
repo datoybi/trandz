@@ -67,7 +67,7 @@ const Wrapper = styled.div`
 
 const List = styled.ol`
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
   flex-flow: row wrap;
 `;
 
