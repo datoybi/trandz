@@ -1,9 +1,7 @@
 const puppeteer = require("puppeteer");
 const axios = require("axios");
 const { keywordsCrawling, musicCrawling, TVCrawling, newsCrawling, youtubeCrawling, movieCrawling } = require("./crawling");
-// const { keywordData, newsData, youtubeData, musicData, movieData, tvData } = require("./dataSetting");
 
-// const { counter } = require("./db/db");
 const KEYWORD_URL = "https://trends.google.co.kr/trends/trendingsearches/daily/rss?geo=KR";
 const NEWS_URL = "https://www.bbc.com/korean/mostread.json";
 const YOUTUBE_TREND_URL = "https://kr.noxinfluencer.com/youtube-video-rank/top-kr-all-video-day";
@@ -12,12 +10,13 @@ const MUSIC_URL = "https://music.bugs.co.kr/chart/track/week/total";
 const TV_URL = " https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=blUw&qvt=0&query=주간%20시청률";
 
 let keywordData = [];
-let newsData = {};
-let youtubeData = {};
-let musicData = {};
+let newsData = [];
+let youtubeData = [];
+let musicData = [];
 let movieData = [];
 let tvData = [];
-let counter = 1;
+
+const REFRESH_TIME = 1000 * 60 * 60 * 3; // 3H
 
 const sendRequest = async (url, errorMessage) => {
   try {
@@ -31,109 +30,70 @@ const sendRequest = async (url, errorMessage) => {
   return false;
 };
 
-setInterval(async () => {
+const crawlData = async URL => {
+  const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"], headless: true });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1280, height: 1800 });
+  await page.goto(URL);
+
+  await page.evaluate(() => {
+    window.scrollTo(0, window.document.body.scrollHeight);
+  });
+  return await page.content();
+};
+
+const getData = async () => {
   console.log("run!!!!!!!!!!!!!!!!");
+
   const htmlString = await sendRequest(KEYWORD_URL);
-  keywordData = [...keywordsCrawling(htmlString)];
-  // keywordData = { test: counter };
-  // counter += 1;
-  console.log(keywordData);
-  // newsData = [...newsCrawling];
-  // youtubeData = [...youtubeCrawling];
-  // musicData = [...musicCrawling];
-  // movieData = [...movieCrawling];
-  // tvData = [...TVCrawling];
-}, 2000);
+  keywordData = keywordsCrawling(htmlString);
+
+  const { records } = await sendRequest(NEWS_URL);
+  newsData = newsCrawling(records);
+
+  (async () => {
+    youtubeData = youtubeCrawling(await crawlData(YOUTUBE_TREND_URL));
+  })();
+
+  (async () => {
+    movieData = movieCrawling(await crawlData(MOVIE_URL));
+  })();
+
+  (async () => {
+    musicData = musicCrawling(await crawlData(MUSIC_URL));
+  })();
+
+  (async () => {
+    tvData = TVCrawling(await crawlData(TV_URL));
+  })();
+};
+
+setInterval(() => {
+  getData();
+}, REFRESH_TIME); // 3h
 
 const getKeywords = async (req, res) => {
-  // const htmlString = await sendRequest(KEYWORD_URL);
-  // const result = keywordsCrawling(htmlString);
-  // console.log(keywordData);
-
   res.json(keywordData);
 };
 
 const getNews = async (req, res) => {
-  const { records } = await sendRequest(NEWS_URL);
-  const result = newsCrawling(records);
-  res.json(result);
+  res.json(newsData);
 };
 
 const getYoutube = async (req, res) => {
-  (async () => {
-    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"], headless: true });
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 1800 });
-    await page.goto(YOUTUBE_TREND_URL);
-
-    await page.evaluate(() => {
-      window.scrollTo(0, window.document.body.scrollHeight);
-    });
-
-    const content = await page.content();
-    const result = [...youtubeCrawling(content)];
-    res.json(result);
-
-    await browser.close();
-  })();
+  res.json(youtubeData);
 };
 
 const getMovie = async (req, res) => {
-  (async () => {
-    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"], headless: true });
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 1000 });
-    await page.goto(MOVIE_URL);
-
-    const content = await page.content();
-    const result = movieCrawling(content);
-    res.json(result);
-
-    await browser.close();
-  })();
+  res.json(movieData);
 };
 
 const getMusic = async (req, res) => {
-  (async () => {
-    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"], headless: true });
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 1000 });
-    await page.goto(MUSIC_URL);
-
-    const content = await page.content();
-    const result = musicCrawling(content);
-    res.json(result);
-
-    await browser.close();
-  })();
+  res.json(musicData);
 };
 
 const getTV = async (req, res) => {
-  (async () => {
-    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"], headless: true });
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 1000 });
-    await page.goto(TV_URL);
-
-    const content = await page.content();
-    const result = TVCrawling(content);
-    res.json(result);
-
-    await browser.close();
-  })();
-};
-
-// 저절로 세팅해둘 것
-// setInterval(() => {
-//   counter += 1;
-//   console.log("increase: " + counter);
-// }, 1000);
-// 1000
-// 1000 * 36000 = 1시간
-
-const getTest = async (req, res) => {
-  console.log("called : " + counter);
-  res.json({ counter });
+  res.json(tvData);
 };
 
 module.exports = {
@@ -143,5 +103,5 @@ module.exports = {
   getMovie,
   getMusic,
   getTV,
-  getTest,
+  getData,
 };
