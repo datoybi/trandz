@@ -7,7 +7,7 @@ const BASE_URL = `http://localhost:5000`;
 
 export const fetchKeyword = () => {
   return async dispatch => {
-    const url = `${BASE_URL}${PROXY}/keywords`;
+    const url = `${PROXY}/keywords`;
     console.log(url);
     // const url = `${BASE_URL}/keywords`;
 
@@ -18,7 +18,7 @@ export const fetchKeyword = () => {
 
 export const fetchTopNews = () => {
   return async dispatch => {
-    const url = `${BASE_URL}${PROXY}/news`;
+    const url = `${PROXY}/news`;
     // const url = `${BASE_URL}/news`;
 
     const result = await sendRequest(url, ERROR_MESSAGES.NEWS_FETCH_ERROR);
@@ -28,7 +28,7 @@ export const fetchTopNews = () => {
 
 export const fetchYoutube = () => {
   return async dispatch => {
-    const url = `${BASE_URL}${PROXY}/youtube`;
+    const url = `${PROXY}/youtube`;
     // const url = `${BASE_URL}/youtube`;
 
     const result = await sendRequest(url, ERROR_MESSAGES.YOUTUBE_FETCH_ERROR);
@@ -38,7 +38,7 @@ export const fetchYoutube = () => {
 
 export const fetchMusic = () => {
   return async dispatch => {
-    const url = `${BASE_URL}${PROXY}/music`;
+    const url = `${PROXY}/music`;
     // const url = `${BASE_URL}/music`;
 
     const result = await sendRequest(url, ERROR_MESSAGES.MUSIC_FETCH_ERROR);
@@ -48,7 +48,7 @@ export const fetchMusic = () => {
 
 export const fetchMovie = () => {
   return async dispatch => {
-    const url = `${BASE_URL}${PROXY}/movie`;
+    const url = `${PROXY}/movie`;
     // const url = `${BASE_URL}/movie`;
 
     const result = await sendRequest(url, ERROR_MESSAGES.MOVIE_FETCH_ERROR);
@@ -58,7 +58,7 @@ export const fetchMovie = () => {
 
 export const fetchTV = () => {
   return async dispatch => {
-    const url = `${BASE_URL}${PROXY}/tv`;
+    const url = `${PROXY}/tv`;
     // const url = `${BASE_URL}/tv`;
 
     const result = await sendRequest(url, ERROR_MESSAGES.TV_FETCH_ERROR);
