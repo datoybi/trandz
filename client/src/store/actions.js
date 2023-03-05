@@ -61,7 +61,8 @@ export const fetchTV = () => {
 
 export const fetchAllData = () => {
   return async dispatch => {
-    const url = `${BASE_URL}${PROXY}/all`;
+    // const url = `${BASE_URL}${PROXY}/all`;
+    const url = `${PROXY}/all`;
 
     const result = await sendRequest(url, ERROR_MESSAGES.All_FETCH_ERROR);
     dispatch(actions.getAllData(result));
