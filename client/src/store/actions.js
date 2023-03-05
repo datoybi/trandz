@@ -61,10 +61,39 @@ export const fetchTV = () => {
 
 export const fetchAllData = () => {
   return async dispatch => {
-    // const url = `${BASE_URL}${PROXY}/all`;
     const url = `${PROXY}/all`;
 
     const result = await sendRequest(url, ERROR_MESSAGES.All_FETCH_ERROR);
     dispatch(actions.getAllData(result));
+  };
+};
+
+export const fetchSocial = () => {
+  return async dispatch => {
+    // const url = `${BASE_URL}${PROXY}/social`;
+    const url = `${PROXY}/social`;
+
+    const result = await sendRequest(url, ERROR_MESSAGES.All_FETCH_ERROR);
+    dispatch(actions.getSocial(result));
+  };
+};
+
+export const fetchEntertainment = () => {
+  return async dispatch => {
+    // const url = `${BASE_URL}${PROXY}/entertainment`;
+    const url = `${PROXY}/entertainment`;
+
+    const result = await sendRequest(url, ERROR_MESSAGES.All_FETCH_ERROR);
+    dispatch(actions.getEntertainment(result));
+  };
+};
+
+export const fetchCulture = () => {
+  return async dispatch => {
+    // const url = `${BASE_URL}${PROXY}/culture`;
+    const url = `${PROXY}/culture`;
+
+    const result = await sendRequest(url, ERROR_MESSAGES.All_FETCH_ERROR);
+    dispatch(actions.getCulture(result));
   };
 };

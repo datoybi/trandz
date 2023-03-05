@@ -5,10 +5,9 @@ import { keyframes } from "@emotion/react";
 const Loading = () => {
   return (
     <Wrapper>
-      <LoadingSentence>
+      {/* <LoadingSentence>
         데이터를 가져오고 있습니다. <br />
-        잠시만 기다려주세요.🙄
-      </LoadingSentence>
+      </LoadingSentence> */}
       <LoadingBar>
         <LoadingBarInner></LoadingBarInner>
       </LoadingBar>

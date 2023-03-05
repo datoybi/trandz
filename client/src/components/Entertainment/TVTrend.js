@@ -15,10 +15,11 @@ const TVTrend = () => {
   return (
     <Section>
       <Wrapper>
-        <h1 className="section__title">
+        <SectionTitle className="section__title">
           한 주간 높은 시청률을 기록한
-          <br /> TV 프로그램을 알아보세요.
-        </h1>
+          <br />
+          TV 프로그램을 알아보세요.
+        </SectionTitle>
         <TableWrapper>{tableHtml}</TableWrapper>
       </Wrapper>
     </Section>
@@ -31,16 +32,20 @@ const Section = styled.section`
   background-color: #fafafa;
 `;
 
+const SectionTitle = styled.h1`
+  padding-left: 20px;
+`;
+
 const Wrapper = styled.div`
   width: 980px;
   margin-bottom: 100px;
-  padding: 0 20px;
 `;
 
 const TableWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
-
+  width: 95%;
+  margin: 0 auto;
   @media (max-width: 915px) {
     flex-direction: column;
   }

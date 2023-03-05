@@ -62,6 +62,21 @@ const slice = createSlice({
       state.movieList = action.payload.movie;
       state.TVList = action.payload.tv;
     },
+
+    getSocial(state, action) {
+      state.keywords = action.payload.keywords;
+      state.news = action.payload.news;
+    },
+
+    getEntertainment(state, action) {
+      state.youtubeList = action.payload.youtube;
+      state.TVList = action.payload.tv;
+    },
+
+    getCulture(state, action) {
+      state.musicList = action.payload.music;
+      state.movieList = action.payload.movie;
+    },
   },
 });
 

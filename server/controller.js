@@ -16,7 +16,7 @@ let musicData = [];
 let movieData = [];
 let tvData = [];
 
-const REFRESH_TIME = 1000 * 60 * 60 * 3; // 3H
+const REFRESH_TIME = 1000 * 60 * 60 * 6; // 6H
 
 const sendRequest = async (url, errorMessage) => {
   try {
@@ -99,6 +99,21 @@ const getAllData = async (req, res) => {
   res.json(result);
 };
 
+const getSocial = async (req, res) => {
+  const result = { keywords: keywordData, news: newsData };
+  res.json(result);
+};
+
+const getCulture = async (req, res) => {
+  const result = { music: musicData, movie: movieData };
+  res.json(result);
+};
+
+const getEntertainment = async (req, res) => {
+  const result = { youtube: youtubeData, tv: tvData };
+  res.json(result);
+};
+
 module.exports = {
   getKeywords,
   getNews,
@@ -108,4 +123,8 @@ module.exports = {
   getTV,
   getData,
   getAllData,
+
+  getSocial,
+  getCulture,
+  getEntertainment,
 };
