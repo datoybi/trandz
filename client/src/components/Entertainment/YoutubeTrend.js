@@ -66,9 +66,18 @@ const Wrapper = styled.div`
 `;
 
 const List = styled.ol`
-  display: flex;
-  justify-content: start;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 285px);
+  grid-gap: 1rem;
+  justify-content: center;
+
+  @media (max-width: 1011px) {
+    grid-template-columns: repeat(auto-fill, 350px);
+  }
+
+  @media (max-width: 420px) {
+    grid-template-columns: repeat(auto-fill, 285px);
+  }
 `;
 
 const Item = styled.li`

@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 import KeywordTrend from "./KeywordTrend";
 import { LOADING_KEYWORD_COUNT } from "../../constants/trendz";
 import { actions } from "../../store/slice";
-import loadIcon from "../../assets/plus_icon.png";
+import loadIcon from "../../assets/images/plus_icon.png";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const KeywordsTrend = forwardRef((_, keywordRef) => {

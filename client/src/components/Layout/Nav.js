@@ -7,7 +7,7 @@ import { css, keyframes } from "@emotion/react";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const Nav = ({ refs }) => {
-  const [keywordRef, youtubeRef, movieRef] = refs;
+  const [homeRef, keywordRef, youtubeRef, movieRef] = refs;
   const { _, height } = useWindowDimensions();
   const [fixedClass, setFixedClass] = useState(false);
 
@@ -21,6 +21,13 @@ const Nav = ({ refs }) => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogoClick = () => {
+    homeRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   const handleSocialClick = () => {
     keywordRef.current.scrollIntoView({
@@ -44,7 +51,7 @@ const Nav = ({ refs }) => {
 
   return (
     <Tabs fixed={fixedClass}>
-      <Logo>Trendz</Logo>
+      <Logo onClick={handleLogoClick}>Trendz</Logo>
       <Tab onClick={handleSocialClick}>사회</Tab>
       <Tab onClick={handleEntertainClick}>엔터테이먼트</Tab>
       <Tab onClick={handleCultureClick}>문화</Tab>

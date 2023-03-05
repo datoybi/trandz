@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, lazy } from "react";
 import { useDispatch } from "react-redux";
 import "./App.css";
 import Nav from "./components/Layout/Nav";
@@ -6,13 +6,13 @@ import Footer from "./components/Layout/Footer";
 import Home from "./components/Layout/Home";
 import KeywordsTrend from "./components/Social/KeywordsTrend";
 import NewsTrend from "./components/Social/NewsTrend";
-import MovieTrend from "./components/Culture/MovieTrend";
-import MusicTrend from "./components/Culture/MusicTrend";
-import TVTrend from "./components/Entertainment/TVTrend";
 import YoutubeTrend from "./components/Entertainment/YoutubeTrend";
 import Loading from "./components/Layout/Loading";
-
 import { fetchKeyword, fetchMusic, fetchTopNews, fetchYoutube, fetchTV, fetchMovie } from "./store/actions";
+const TVTrend = lazy(() => import("./components/Entertainment/TVTrend"));
+const MusicTrend = lazy(() => import("./components/Culture/MusicTrend"));
+const MovieTrend = lazy(() => import("./components/Culture/MovieTrend"));
+
 const REFRESH_DATA = 1000 * 60 * 60 * 3; // 3h
 
 const App = () => {
@@ -21,6 +21,7 @@ const App = () => {
   const keywordRef = useRef(null);
   const movieRef = useRef(null);
   const youtubeRef = useRef(null);
+  const homeRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,8 +54,8 @@ const App = () => {
       ) : (
         <div className="App">
           <header>
-            <Home />
-            <Nav refs={[keywordRef, youtubeRef, movieRef]} />
+            <Home ref={homeRef} />
+            <Nav refs={[homeRef, keywordRef, youtubeRef, movieRef]} />
           </header>
           <main>
             <article>

@@ -5,6 +5,7 @@ import { keyframes } from "@emotion/react";
 const Loading = () => {
   return (
     <Wrapper>
+      <p>데이터를 가져오고 있습니다. 잠시만 기다려주세요.🙄</p>
       <LoadingBar>
         <LoadingBarInner></LoadingBarInner>
       </LoadingBar>
@@ -40,6 +41,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   animation: ${fadeOut} 2s;
+  flex-direction: column;
 `;
 
 const LoadingBar = styled.div`
@@ -47,6 +49,7 @@ const LoadingBar = styled.div`
   padding: 0.2rem;
   border-radius: 360px;
   border: 0.2rem solid #6e6e73;
+  margin-top: 20px;
 
   @media (max-width: 500px) {
     display: flex;

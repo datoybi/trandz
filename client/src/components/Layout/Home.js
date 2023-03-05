@@ -1,14 +1,14 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "@emotion/styled";
 
-const Home = () => {
+const Home = forwardRef((_, homeRef) => {
   return (
-    <Wrapper>
+    <Wrapper ref={homeRef}>
       <Text>요즘 뜨는 Trend는 뭐가 있을까요?</Text>
       <Text subText>지금 확인해보세요.</Text>
     </Wrapper>
   );
-};
+});
 
 export default Home;
 

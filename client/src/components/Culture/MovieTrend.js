@@ -1,8 +1,8 @@
 import React, { useRef, useState, forwardRef } from "react";
 import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
-import carouselNextIcon from "../../assets/next_icon.png";
-import carouselPrevIcon from "../../assets/prev_icon.png";
+import carouselNextIcon from "../../assets/images/next_icon.png";
+import carouselPrevIcon from "../../assets/images/prev_icon.png";
 import MovieElement from "./MovieElement";
 import MobileMovieTrend from "./MobileMovieTrend";
 import useWindowDimensions from "../../hooks/useWindowDimensions";

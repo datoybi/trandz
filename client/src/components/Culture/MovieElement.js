@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
-import thumbUp from "../../assets/thumbs-up.png";
-import noImage from "../../assets/ico_noimage.png";
+import thumbUp from "../../assets/images/thumbs-up.png";
+import noImage from "../../assets/images/ico_noimage.png";
 import { MOVIE_BASE_URL } from "../../constants/url";
 
 const MovieElement = ({ movie }) => {
