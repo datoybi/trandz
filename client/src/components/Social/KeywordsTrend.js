@@ -56,7 +56,7 @@ const KeywordsTrend = forwardRef((_, keywordRef) => {
   const isVisibleLoadButton = keywordElement.length >= LOADING_KEYWORD_COUNT && keywordCount !== keywordElement.length;
 
   return (
-    <Section ref={keywordRef}>
+    <Section ref={keywordRef} data-cy="social-wrapper">
       <Wrapper>
         <h1 className="section__title">
           구글에 검색한 <br />

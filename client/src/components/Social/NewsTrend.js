@@ -15,9 +15,9 @@ const NewsTrend = () => {
   return (
     <Section>
       <Wrapper>
-        <h1 className="section__title">
+        <SectionTitle className="section__title">
           BBC Korea가 엄선한 <br />톱 뉴스를 접해보세요.
-        </h1>
+        </SectionTitle>
         <List>
           {newsHTML}
           <NewsContainer></NewsContainer>
@@ -38,8 +38,11 @@ const Section = styled.section`
 `;
 
 const Wrapper = styled.div`
-  padding: 0 20px;
   width: 980px;
+`;
+
+const SectionTitle = styled.h1`
+  padding-left: 20px;
 `;
 
 const List = styled.ul`

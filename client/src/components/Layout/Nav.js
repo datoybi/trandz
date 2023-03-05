@@ -52,9 +52,15 @@ const Nav = ({ refs }) => {
   return (
     <Tabs fixed={fixedClass}>
       <Logo onClick={handleLogoClick}>Trendz</Logo>
-      <Tab onClick={handleSocialClick}>사회</Tab>
-      <Tab onClick={handleEntertainClick}>엔터테이먼트</Tab>
-      <Tab onClick={handleCultureClick}>문화</Tab>
+      <Tab data-cy="social-nav" onClick={handleSocialClick}>
+        사회
+      </Tab>
+      <Tab data-cy="entertainment-nav" onClick={handleEntertainClick}>
+        엔터테이먼트
+      </Tab>
+      <Tab data-cy="culture-nav" onClick={handleCultureClick}>
+        문화
+      </Tab>
     </Tabs>
   );
 };

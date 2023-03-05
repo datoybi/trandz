@@ -34,12 +34,12 @@ const YouTubeTrend = forwardRef((_, youtubeRef) => {
   ));
 
   return (
-    <Section ref={youtubeRef}>
+    <Section ref={youtubeRef} data-cy="entertainment-wrapper">
       <Wrapper>
-        <h1 className="section__title">
+        <SectionTitle className="section__title">
           24시간 동안 한국에서 <br />
           가장 많이 본 유튜브를 시청하세요.
-        </h1>
+        </SectionTitle>
         <List>
           {contentsHtml}
           <ItemContainer></ItemContainer>
@@ -58,25 +58,28 @@ const Section = styled.section`
   background-color: #fafafa;
 `;
 
+const SectionTitle = styled.h1`
+  padding-left: 20px;
+`;
+
 const Wrapper = styled.div`
   margin-bottom: 100px;
   margin-top: 100px;
   width: 980px;
-  padding: 0 20px;
 `;
 
 const List = styled.ol`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 285px);
+  grid-template-columns: repeat(auto-fill, 295px);
   grid-gap: 1rem;
   justify-content: center;
 
   @media (max-width: 1011px) {
-    grid-template-columns: repeat(auto-fill, 350px);
+    grid-template-columns: repeat(auto-fill, 360px);
   }
 
   @media (max-width: 420px) {
-    grid-template-columns: repeat(auto-fill, 285px);
+    grid-template-columns: repeat(auto-fill, 295px);
   }
 `;
 

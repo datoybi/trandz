@@ -53,6 +53,15 @@ const slice = createSlice({
     changeMoviePage(state, action) {
       state.moviePage += action.payload;
     },
+
+    getAllData(state, action) {
+      state.keywords = action.payload.keywords;
+      state.news = action.payload.news;
+      state.youtubeList = action.payload.youtube;
+      state.musicList = action.payload.music;
+      state.movieList = action.payload.movie;
+      state.TVList = action.payload.tv;
+    },
   },
 });
 

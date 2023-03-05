@@ -43,8 +43,6 @@ const crawlData = async URL => {
 };
 
 const getData = async () => {
-  console.log("run!!!!!!!!!!!!!!!!");
-
   const htmlString = await sendRequest(KEYWORD_URL);
   keywordData = keywordsCrawling(htmlString);
 
@@ -96,6 +94,11 @@ const getTV = async (req, res) => {
   res.json(tvData);
 };
 
+const getAllData = async (req, res) => {
+  const result = { keywords: keywordData, news: newsData, youtube: youtubeData, music: musicData, movie: movieData, tv: tvData };
+  res.json(result);
+};
+
 module.exports = {
   getKeywords,
   getNews,
@@ -104,4 +107,5 @@ module.exports = {
   getMusic,
   getTV,
   getData,
+  getAllData,
 };
