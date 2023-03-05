@@ -93,7 +93,7 @@ const CarouselButton = styled.button`
   border: 0;
   cursor: pointer;
   bottom: 383px;
-  left: ${props => (props.prev ? "-33px" : "925px")};
+  left: ${props => (props.prev ? "-45px" : "925px")};
 
   & > img {
     width: 45px;
