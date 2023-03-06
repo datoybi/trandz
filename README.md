@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Trendz
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="./client/src/assets/images/readme/bg_trendz.gif" width="100%"/>
 
-## Available Scripts
+요즘 트렌트를 따라가기 벅찰 때, 스몰토크 주제로 무슨 말을 해야 할지 모를 때. 그럴때 요즘 트렌트가 무엇인지 빠르게 알 수 있는 사이트를 만들고 싶었습니다. Trendz는 요즘 트랜드를 한페이지 안에 빠르게 훑어 볼 수 있는 사이트입니다. 그로인해 당신의 인싸력을 향상시키는 것을 목표로 합니다.🙂 <br/><br/>
 
-In the project directory, you can run:
+# 🤳스크린샷
 
-### `npm start`
+<div align="center">
+<img src="./client/src/assets/images/readme/screenshot1.png" width="49%"/>
+<img src="./client/src/assets/images/readme/screenshot2.png" width="49%"/>
+<img src="./client/src/assets/images/readme/screenshot3.png" width="49%"/>
+<img src="./client/src/assets/images/readme/screenshot4.png" width="49%"/>
+<img src="./client/src/assets/images/readme/screenshot5.png" width="49%"/>
+<img src="./client/src/assets/images/readme/screenshot6.png" width="49%"/>
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<br/><br/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# 🛠 기술 스택
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div>
+<br/>
+<h2 align="left">Client</h2> 
+  <img src="https://img.shields.io/badge/React-v18-61dafb?logo=React"/>
+  <img src="https://img.shields.io/badge/Redux-v8.0-61dafb?logo=Redux"/>
+  <img src="https://img.shields.io/badge/axios-v0.27-671CDE"/>
+  <img src="https://img.shields.io/badge/Emotion-v11.10-C43BAD?logo=Emotion"/>
+  <img src="https://img.shields.io/badge/Prettier-v2.7-F7B93E?logo=Prettier"/>
+  <img src="https://img.shields.io/badge/Eslint-v2.7-4B32C3?logo=Eslint"/>
+  <img src="https://img.shields.io/badge/Cypress-v12.7-1FA971?logo=Cypress"/>
+<br/>
+<h2 align="left">Server</h2> 
+  <img src="https://img.shields.io/badge/Node.js-v17.0-84ba64?logo=Node.js"/>
+  <img src="https://img.shields.io/badge/Express-v17.0-EEEEEE?logo=Express"/>
+  <img src="https://img.shields.io/badge/Cheerio-v1.0-E88C1F?logo=Cheerio"/>
+  <img src="https://img.shields.io/badge/Puppeteer-v17.0-2E8555?logo=Puppeteer"/>
+  <br/>
+</div>
