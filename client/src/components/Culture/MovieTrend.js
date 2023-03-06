@@ -50,12 +50,12 @@ const MovieTrend = forwardRef((_, movieRef) => {
           </h1>
           <div>
             <CarouselWrapper>{movieHTML}</CarouselWrapper>
-            {carouselIndex === 0 && (
+            {carouselIndex === 0 && movieList.length > 0 && (
               <CarouselButton type="button" onClick={() => toggleOnClick(1)}>
                 <img src={carouselNextIcon} alt="다음영화 순위보기" />
               </CarouselButton>
             )}
-            {carouselIndex === 1 && (
+            {carouselIndex === 1 && movieList.length > 0 && (
               <CarouselButton prev type="button" onClick={() => toggleOnClick(0)}>
                 <img src={carouselPrevIcon} alt="이전영화 순위보기" />
               </CarouselButton>

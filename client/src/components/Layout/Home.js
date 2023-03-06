@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 `;
 
 const Text = styled.h1`
-  font-size: ${props => (props.subText ? "3rem" : "4rem")};
+  font-size: ${props => (props.subText ? "3rem" : "4.5rem")};
   margin-top: ${props => props.subText && "35px"};
   color: #fff;
   font-family: "Pretendard Variable";
