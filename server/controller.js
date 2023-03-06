@@ -68,7 +68,7 @@ const getData = async () => {
 
 setInterval(() => {
   getData();
-}, REFRESH_TIME); // 3h
+}, REFRESH_TIME);
 
 const getKeywords = async (req, res) => {
   res.json(keywordData);
@@ -100,17 +100,17 @@ const getAllData = async (req, res) => {
 };
 
 const getSocial = async (req, res) => {
-  const result = { keywords: keywordData, news: newsData };
+  const result = { keywords: keywordData, youtube: youtubeData };
   res.json(result);
 };
 
 const getCulture = async (req, res) => {
-  const result = { music: musicData, movie: movieData };
+  const result = { news: newsData, tv: tvData };
   res.json(result);
 };
 
 const getEntertainment = async (req, res) => {
-  const result = { youtube: youtubeData, tv: tvData };
+  const result = { movie: movieData, music: musicData };
   res.json(result);
 };
 
