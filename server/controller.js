@@ -42,7 +42,7 @@ const crawlData = async URL => {
   return await page.content();
 };
 
-const getData = async () => {
+const getData1 = async () => {
   const htmlString = await sendRequest(KEYWORD_URL);
   keywordData = keywordsCrawling(htmlString);
 
@@ -56,7 +56,9 @@ const getData = async () => {
   (async () => {
     movieData = movieCrawling(await crawlData(MOVIE_URL));
   })();
+};
 
+const getData2 = async () => {
   (async () => {
     musicData = musicCrawling(await crawlData(MUSIC_URL));
   })();
@@ -67,7 +69,8 @@ const getData = async () => {
 };
 
 setInterval(() => {
-  getData();
+  getData1();
+  getData2();
 }, REFRESH_TIME);
 
 const getKeywords = async (req, res) => {
@@ -121,7 +124,8 @@ module.exports = {
   getMovie,
   getMusic,
   getTV,
-  getData,
+  getData1,
+  getData2,
   getAllData,
 
   getSocial,

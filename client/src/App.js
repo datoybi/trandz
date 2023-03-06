@@ -38,16 +38,16 @@ const App = () => {
       setIsLoading(true);
       console.log("crawling start...");
       Promise.all([
-        // await dispatch(fetchAllData()),
+        await dispatch(fetchAllData()),
         // await dispatch(fetchCulture()),
         // await dispatch(fetchEntertainment()),
         // await dispatch(fetchSocial()),
-        await dispatch(fetchKeyword()),
-        await dispatch(fetchTopNews()),
-        await dispatch(fetchYoutube()),
-        await dispatch(fetchMovie()),
-        await dispatch(fetchMusic()),
-        await dispatch(fetchTV()),
+        // await dispatch(fetchKeyword()),
+        // await dispatch(fetchTopNews()),
+        // await dispatch(fetchYoutube()),
+        // await dispatch(fetchMovie()),
+        // await dispatch(fetchMusic()),
+        // await dispatch(fetchTV()),
       ]).then(setIsLoading(false));
       setIsLoading(false);
       console.log("crawling finish...");

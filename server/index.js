@@ -2,14 +2,15 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const http = require("http").createServer(app);
-const { getData } = require("./controller");
+const { getData1, getData2 } = require("./controller");
 const indexRouter = require("./routes");
 
 app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 app.use("/", indexRouter);
-getData();
+getData1();
+getData2();
 
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;

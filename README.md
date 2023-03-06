@@ -7,7 +7,7 @@
 # 🤳스크린샷
 
 <div align="center">
-<img src="./client/src/assets/images/readme/screenshot1.png" width="49%"/>
+<img src="./client/src/assets/images/readme/screenshot1.png" width="49%" />
 <img src="./client/src/assets/images/readme/screenshot2.png" width="49%"/>
 <img src="./client/src/assets/images/readme/screenshot3.png" width="49%"/>
 <img src="./client/src/assets/images/readme/screenshot4.png" width="49%"/>
