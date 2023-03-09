@@ -16,8 +16,6 @@ let musicData = [];
 let movieData = [];
 let tvData = [];
 
-const REFRESH_TIME = 1000 * 60 * 60 * 6; // 6H
-
 const sendRequest = async (url, errorMessage) => {
   try {
     const response = await axios.get(url);
@@ -42,7 +40,7 @@ const crawlData = async URL => {
   return await page.content();
 };
 
-const getData1 = async () => {
+const getData = async () => {
   const htmlString = await sendRequest(KEYWORD_URL);
   keywordData = keywordsCrawling(htmlString);
 
@@ -56,9 +54,7 @@ const getData1 = async () => {
   (async () => {
     movieData = movieCrawling(await crawlData(MOVIE_URL));
   })();
-};
 
-const getData2 = async () => {
   (async () => {
     musicData = musicCrawling(await crawlData(MUSIC_URL));
   })();
@@ -67,15 +63,58 @@ const getData2 = async () => {
     tvData = TVCrawling(await crawlData(TV_URL));
   })();
 };
-
-setInterval(() => {
-  getData1();
-  getData2();
+// 24시간에 1번씩 tv, news, music, movie ,
+// 3시간에 한번씩 keyword, youtube
+const REFRESH_TIME = 1000 * 60 * 60 * 6; // 3H
+setInterval(async () => {
+  // getData();
+  await setKeyword();
+  await setYoutube();
 }, REFRESH_TIME);
 
-const getKeywords = async (req, res) => {
-  res.json(keywordData);
+setInterval(async () => {
+  await setMovie();
+  await setMusic();
+  await setNews();
+  await setTV();
+}, 1000 * 60 * 60 * 24); // 5시간
+
+const setKeyword = async (req, res) => {
+  const htmlString = await sendRequest(KEYWORD_URL);
+  keywordData = keywordsCrawling(htmlString);
 };
+
+const setNews = async (req, res) => {
+  const { records } = await sendRequest(NEWS_URL);
+  newsData = newsCrawling(records);
+};
+
+const setMusic = (req, res) => {
+  (async () => {
+    musicData = musicCrawling(await crawlData(MUSIC_URL));
+  })();
+};
+
+const setMovie = (req, res) => {
+  (async () => {
+    movieData = movieCrawling(await crawlData(MOVIE_URL));
+  })();
+};
+
+const setTV = async (req, res) => {
+  (async () => {
+    tvData = TVCrawling(await crawlData(TV_URL));
+  })();
+};
+
+const setYoutube = async (req, res) => {
+  (async () => {
+    youtubeData = youtubeCrawling(await crawlData(YOUTUBE_TREND_URL));
+  })();
+};
+
+// !: get
+const getKeywords = (req, res) => res.json(keywordData);
 
 const getNews = async (req, res) => {
   res.json(newsData);
@@ -118,14 +157,20 @@ const getEntertainment = async (req, res) => {
 };
 
 module.exports = {
+  setKeyword,
+  setYoutube,
+  setMovie,
+  setMusic,
+  setNews,
+  setTV,
+
   getKeywords,
   getNews,
   getYoutube,
   getMovie,
   getMusic,
   getTV,
-  getData1,
-  getData2,
+  getData,
   getAllData,
 
   getSocial,

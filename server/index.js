@@ -2,15 +2,20 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const http = require("http").createServer(app);
-const { getData1, getData2 } = require("./controller");
+const { getData, setKeyword, setYoutube, setMovie, setMusic, setNews, setTV } = require("./controller");
 const indexRouter = require("./routes");
 
 app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 app.use("/", indexRouter);
-getData1();
-getData2();
+// getData();
+setKeyword();
+setYoutube();
+setMovie();
+setMusic();
+setNews();
+setTV();
 
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
