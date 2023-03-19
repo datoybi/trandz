@@ -1,7 +1,7 @@
-<img src="./client/src/assets/images/readme/bg_trendz.gif" width="100%"/>
 <div align="center">
 	<h1>Trendz</h1>
 </div>
+<img src="./client/src/assets/images/readme/bg_trendz.gif" width="100%"/>
 
 # 📝 프로젝트 소개
 
