@@ -66,17 +66,23 @@ const getData = async () => {
 // 24시간에 1번씩 tv, news, music, movie ,
 // 3시간에 한번씩 keyword, youtube
 const REFRESH_TIME = 1000 * 60 * 60 * 6; // 3H
+// setInterval(async () => {
+//   // getData();
+//   await setKeyword();
+//   await setYoutube();
+// });
+
+// 1시간에 1번씩 데이터 없으면 가져오기
 setInterval(async () => {
-  // getData();
-  await setKeyword();
-  await setYoutube();
-}, REFRESH_TIME);
+  if (keywordData.length === 0) await setKeyword();
+  if (newsData.length === 0) await setNews();
+  if (musicData.length === 0) await setMusic();
+  if (movieData.length === 0) await setMovie();
+  if (tvData.length === 0) await setTV();
+}, 1000 * 60 * 60 * 1);
 
 setInterval(async () => {
-  await setMovie();
-  await setMusic();
-  await setNews();
-  await setTV();
+  await getData();
 }, 1000 * 60 * 60 * 24); // 5시간
 
 const setKeyword = async (req, res) => {

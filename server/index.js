@@ -9,13 +9,21 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 app.use("/", indexRouter);
-// getData();
+
 setKeyword();
 setYoutube();
 setMovie();
 setMusic();
 setNews();
 setTV();
+// (async () => {
+//   setKeyword();
+//   setYoutube();
+//   setMovie();
+//   setMusic();
+//   setNews();
+//   setTV();
+// })();
 
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
@@ -25,6 +33,5 @@ app.use(function (err, req, res, next) {
 });
 
 http.listen(process.env.PORT || 5000, () => {
-  console.log(process.env.PORT);
   console.log("Listening on 5000");
 });

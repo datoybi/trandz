@@ -50,22 +50,22 @@ describe("trendz를 테스트한다.", () => {
   it("네비게이션을 테스트한다.", () => {
     cy.wait("@getKeyword");
     cy.get('[data-cy="social-nav"]').click();
-    // cy.get('[data-cy="social-wrapper"]').scrollIntoView();
-    // cy.get('[data-cy="entertainment-wrapper"]').scrollTo("0%", "0%", { duration: 2000 });
-    // cy.get('[data-cy="social-nav"]')
-    //   .click()
-    //   .then(() => {
-    //     cy.wait(3000);
-    //     cy.window().then($window => {
-    //       expect($window.scrollY).to.be.closeTo(500, 100);
-    //     });
-    //   });
+    cy.get('[data-cy="social-wrapper"]').scrollIntoView();
+    cy.get('[data-cy="entertainment-wrapper"]').scrollTo("0%", "0%", { duration: 2000 });
+    cy.get('[data-cy="social-nav"]')
+      .click()
+      .then(() => {
+        cy.wait(3000);
+        cy.window().then($window => {
+          expect($window.scrollY).to.be.closeTo(500, 100);
+        });
+      });
 
-    // cy.get('[data-cy="entertainment-wrapper"]').scrollTo("0%", "0%", { ensureScrollable: false });
+    cy.get('[data-cy="entertainment-wrapper"]').scrollTo("0%", "0%", { ensureScrollable: false });
+    cy.get('[data-cy="entertainment-wrapper"]').scrollTo("top", { ensureScrollable: false });
+
+    cy.get('[data-cy="nav-entertainment"]').click();
     // cy.get('[data-cy="entertainment-wrapper"]').scrollTo("top", { ensureScrollable: false });
-
-    // cy.get('[data-cy="nav-entertainment"]').click();
-    // // cy.get('[data-cy="entertainment-wrapper"]').scrollTo("top", { ensureScrollable: false });
-    // cy.get('[data-cy="social-wrapper"]').scrollTo("top");
+    cy.get('[data-cy="social-wrapper"]').scrollTo("top");
   });
 });
