@@ -1,6 +1,7 @@
-# Trendz
-
 <img src="./client/src/assets/images/readme/bg_trendz.gif" width="100%"/>
+<div align="center">
+	<h1>Trendz</h1>
+</div>
 
 # 📝 프로젝트 소개
 
@@ -26,3 +27,9 @@
   <img src="./client/src/assets/images/readme/server-skills.png"/>
   <br/>
 </div>
+
+# 서비스 이용하기
+
+### trendz 방문하기
+
+<a href="https://helpful-lokum-0bdb3e.netlify.app/">https://helpful-lokum-0bdb3e.netlify.app/
