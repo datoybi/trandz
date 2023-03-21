@@ -63,15 +63,8 @@ const getData = async () => {
     tvData = TVCrawling(await crawlData(TV_URL));
   })();
 };
-// 24시간에 1번씩 tv, news, music, movie ,
-// 3시간에 한번씩 keyword, youtube
-const REFRESH_TIME = 1000 * 60 * 60 * 6; // 3H
-// setInterval(async () => {
-//   // getData();
-//   await setKeyword();
-//   await setYoutube();
-// });
 
+const REFRESH_TIME = 1000 * 60 * 60 * 6; // 3H
 // 1시간에 1번씩 데이터 없으면 가져오기
 setInterval(async () => {
   if (keywordData.length === 0) await setKeyword();
@@ -79,11 +72,22 @@ setInterval(async () => {
   if (musicData.length === 0) await setMusic();
   if (movieData.length === 0) await setMovie();
   if (tvData.length === 0) await setTV();
-}, 1000 * 60 * 60 * 1);
+}, 1000 * 60 * 60 * 1); // 1시간
 
 setInterval(async () => {
-  await getData();
-}, 1000 * 60 * 60 * 24); // 5시간
+  await setKeyword();
+}, 1000 * 60 * 60 * 6); // 6h
+
+setInterval(async () => {
+  await setYoutube();
+}, 1000 * 60 * 60 * 24); // 1d
+
+setInterval(async () => {
+  await setTV();
+  await setMovie();
+  await setMusic();
+  await setNews();
+}, 1000 * 60 * 60 * 24 * 3); // 3d
 
 const setKeyword = async (req, res) => {
   const htmlString = await sendRequest(KEYWORD_URL);
@@ -97,25 +101,33 @@ const setNews = async (req, res) => {
 
 const setMusic = (req, res) => {
   (async () => {
-    musicData = musicCrawling(await crawlData(MUSIC_URL));
+    const newData = musicCrawling(await crawlData(MUSIC_URL));
+    if (newData.length === 0) return;
+    musicData = [...newData];
   })();
 };
 
 const setMovie = (req, res) => {
   (async () => {
-    movieData = movieCrawling(await crawlData(MOVIE_URL));
+    const newData = movieCrawling(await crawlData(MOVIE_URL));
+    if (newData.length === 0) return;
+    movieData = [...newData];
   })();
 };
 
 const setTV = async (req, res) => {
   (async () => {
-    tvData = TVCrawling(await crawlData(TV_URL));
+    const newData = TVCrawling(await crawlData(TV_URL));
+    if (newData.length === 0) return;
+    tvData = [...newData];
   })();
 };
 
 const setYoutube = async (req, res) => {
   (async () => {
-    youtubeData = youtubeCrawling(await crawlData(YOUTUBE_TREND_URL));
+    const newData = youtubeCrawling(await crawlData(YOUTUBE_TREND_URL));
+    if (newData.length === 0) return;
+    youtubeData = [...newData];
   })();
 };
 
