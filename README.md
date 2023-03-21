@@ -20,11 +20,11 @@
 <div>
 <br/>
 <h2 align="left">프론트앤드</h2> 
-  <img src="./client/src/assets/images/readme/client-skill.png"/>
+  <img src="./client/src/assets/images/readme/client-skills.png"/>
 <br/>
 <br/>
 <h2 align="left">백앤드</h2> 
-  <img src="./client/src/assets/images/readme/server-skills.png"/>
+  <img src="./client/src/assets/images/readme/server-skill.png"/>
   <br/>
 </div>
 
