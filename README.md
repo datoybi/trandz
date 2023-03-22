@@ -24,7 +24,7 @@
 <br/>
 <br/>
 <h2 align="left">백앤드</h2> 
-  <img src="./client/src/assets/images/readme/server-skill.png"/>
+  <img src="./client/src/assets/images/readme/server-skills.png"/>
   <br/>
 </div>
 
