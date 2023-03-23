@@ -1,12 +1,12 @@
 /* eslint-disable react/no-array-index-key */
-import React from "react";
+import { ReactElement } from "react";
 import styled from "@emotion/styled";
 import TVElement from "./TVElement";
 import { useAppSelector } from "../../store/hook";
 
 const TABLE_COUNT = 10;
 
-const TVTrend = () => {
+const TVTrend = (): ReactElement => {
   const { TVList = [] } = useAppSelector(state => state.trend);
   const firstTvList = TVList.filter((_, index) => index < TABLE_COUNT);
   const secondTvList = TVList.filter((_, index) => index >= TABLE_COUNT);

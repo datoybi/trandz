@@ -1,9 +1,9 @@
-import React, { ReactNode } from "react";
+import { ReactElement } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/css";
 import { TableProp } from "../../types/types";
 
-const Table = ({ className, children }: TableProp) => {
+const Table = ({ className, children }: TableProp): ReactElement => {
   const cssClass = className;
   return (
     <Wrapper>

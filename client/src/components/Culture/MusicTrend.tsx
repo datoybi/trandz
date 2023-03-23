@@ -1,13 +1,14 @@
-import React from "react";
+import { ReactElement } from "react";
 import styled from "@emotion/styled";
 import MusicElement from "./MusicElement";
 import Table from "../UI/Table";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { useAppSelector } from "../../store/hook";
+import { MusicProps } from "../../types/types";
 
 const DEFAULT_SONG_TITLE = ["BTS", "Dynamite"];
 
-const MusicTrend = () => {
+const MusicTrend = (): ReactElement => {
   const { musicList = [] } = useAppSelector(state => state.trend);
   const { width, height } = useWindowDimensions();
 
@@ -24,8 +25,10 @@ const MusicTrend = () => {
     </tr>
   );
 
-  const musicElement = list => list.map((song, index) => <MusicElement key={`${song.title}_${song.album}`} song={song} rating={index + 1} />);
+  const musicElement = (list: MusicProps[]) =>
+    list.map((song, index) => <MusicElement key={`${song.title}_${song.album}`} song={song} rating={index + 1} />);
   const colSpan = width > 550 ? 3 : 2;
+
   return (
     <Section>
       <Wrapper>

@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, forwardRef, Ref } from "react";
+import { useRef, useState, useEffect, forwardRef, Ref, ReactElement } from "react";
 import { useAppSelector, useAppDispatch } from "../../store/hook";
 
 import styled from "@emotion/styled";
@@ -8,7 +8,7 @@ import { actions } from "../../store/slice";
 import loadIcon from "../../assets/images/plus_icon.png";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 
-const KeywordsTrend = forwardRef((_: any, keywordRef: Ref<HTMLDivElement>) => {
+const KeywordsTrend = forwardRef((_: any, keywordRef: Ref<HTMLDivElement>): ReactElement => {
   const keywordContainer = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
   const [keywordHeight, setKeywordHeight] = useState([]);
@@ -16,7 +16,7 @@ const KeywordsTrend = forwardRef((_: any, keywordRef: Ref<HTMLDivElement>) => {
   const { keywordCount = 0 } = useAppSelector(state => state.trend);
   const { width, height } = useWindowDimensions();
 
-  const calculateHeight = () => {
+  const calculateHeight = (): void => {
     const height = keywordHeight.reduce((acc, element, index) => {
       if (keywordCount > index) return acc + element;
       return acc;
@@ -48,7 +48,7 @@ const KeywordsTrend = forwardRef((_: any, keywordRef: Ref<HTMLDivElement>) => {
     />
   ));
 
-  const loadKeyword = () => {
+  const loadKeyword = (): void => {
     calculateHeight();
     dispatch(actions.increaseKeywordCount());
   };

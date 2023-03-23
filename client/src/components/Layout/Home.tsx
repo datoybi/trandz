@@ -1,11 +1,11 @@
-import { forwardRef, ReactNode, Ref } from "react";
+import { forwardRef, Ref, ReactElement } from "react";
 import styled from "@emotion/styled";
 
 interface H1Prop {
   subText?: boolean;
 }
 
-const Home = forwardRef((_: any, homeRef: Ref<HTMLDivElement>) => {
+const Home = forwardRef((_: any, homeRef: Ref<HTMLDivElement>): ReactElement => {
   return (
     <Wrapper ref={homeRef} data-cy="home-wrapper">
       <Text>요즘 뜨는 Trend는 뭐가 있을까요?</Text>

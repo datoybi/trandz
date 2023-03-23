@@ -1,11 +1,10 @@
-import React from "react";
+import { ReactElement } from "react";
 import styled from "@emotion/styled";
 import { NEWS_BASE_URL } from "../../constants/url";
 import { useAppSelector } from "../../store/hook";
 
-const NewsTrend = () => {
+const NewsTrend = (): ReactElement => {
   const { news = [] } = useAppSelector(state => state.trend);
-
   const newsHTML = news.map(([title, url]) => (
     <a href={`${NEWS_BASE_URL}${url}`} key={`${title}_${url}`} target="_blank" rel="noopener noreferrer">
       <Item>{title}</Item>

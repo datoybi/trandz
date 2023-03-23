@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, ReactElement } from "react";
 import styled from "@emotion/styled";
 import { css, keyframes } from "@emotion/react";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
@@ -8,12 +8,12 @@ interface tabsProp {
   fixed?: boolean;
 }
 
-const Nav = ({ refs }) => {
+const Nav = ({ refs }): ReactElement => {
   const [homeRef, keywordRef, youtubeRef, movieRef] = refs;
   const { width, height } = useWindowDimensions();
   const [fixedClass, setFixedClass] = useState(false);
 
-  const handleScroll = () => {
+  const handleScroll = (): void => {
     if (window === undefined) return;
     const currentHeight = window.scrollY;
     currentHeight > height - 0.5 ? setFixedClass(true) : setFixedClass(false);
@@ -24,27 +24,27 @@ const Nav = ({ refs }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLogoClick = () => {
+  const handleLogoClick = (): void => {
     homeRef.current.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
 
-  const handleSocialClick = () => {
+  const handleSocialClick = (): void => {
     keywordRef.current.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
 
-  const handleEntertainClick = () => {
+  const handleEntertainClick = (): void => {
     youtubeRef.current.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
-  const handleCultureClick = () => {
+  const handleCultureClick = (): void => {
     movieRef.current.scrollIntoView({
       behavior: "smooth",
       block: "start",

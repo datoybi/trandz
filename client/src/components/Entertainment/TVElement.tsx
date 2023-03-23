@@ -1,6 +1,4 @@
-// @ts-nocheck
-
-import React from "react";
+import { ReactElement } from "react";
 import styled from "@emotion/styled";
 import Table from "../UI/Table";
 import { TV_BASE_URL } from "../../constants/url";
@@ -9,10 +7,10 @@ interface StyleProp {
   colSpan?: any;
 }
 
-const TVElement = ({ tvList = [] }) => {
+const TVElement = ({ tvList = [] }): ReactElement => {
   const emptyHtml = (
     <tr>
-      <EmptyStyle colSpan="4">데이터가 없습니다.</EmptyStyle>
+      <EmptyStyle colSpan={4}>데이터가 없습니다.</EmptyStyle>
     </tr>
   );
 
@@ -46,7 +44,7 @@ const TVElement = ({ tvList = [] }) => {
         </colgroup>
         <thead>
           <tr>
-            <Th colSpan="3">프로그램</Th>
+            <Th colSpan={3}>프로그램</Th>
             <Th>시청률</Th>
           </tr>
         </thead>

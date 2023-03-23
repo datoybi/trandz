@@ -1,18 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
 import { LOADING_KEYWORD_COUNT } from "../constants/trendz";
-import { MusicProps, KeywordProps, MovieProps } from "../types/types";
-
-export interface TrendState {
-  keywords: KeywordProps[];
-  keywordCount: number;
-  news: string[];
-  youtubeList: string[];
-  musicList: MusicProps[];
-  movieList: MovieProps[];
-  moviePage: 1;
-  TVList: string[];
-}
+import { TrendState } from "../types/types";
 
 const initialState: TrendState = {
   keywords: [],

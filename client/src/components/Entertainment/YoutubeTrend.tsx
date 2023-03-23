@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 import { YOUTUBE_PLAY_URL } from "../../constants/url";
 import { useAppSelector } from "../../store/hook";
 
-const YouTubeTrend = forwardRef((_: any, youtubeRef: Ref<HTMLElement>) => {
+const YouTubeTrend = forwardRef((_: any, youtubeRef: Ref<HTMLElement>): ReactElement => {
   const { youtubeList = [] } = useAppSelector(state => state.trend);
 
-  const contentsHtml = youtubeList.map((el: any, index) => (
+  const contentsHtml = youtubeList.map((el, index) => (
     <Item key={el.videoId}>
       <a href={`${YOUTUBE_PLAY_URL}${el.videoId}`} target="_blank" rel="noopener noreferrer">
         <YoutubeThumbnail>
