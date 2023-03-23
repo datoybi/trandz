@@ -1,17 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import MusicElement from "./MusicElement";
 import Table from "../UI/Table";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import { useAppSelector } from "../../store/hook";
 
 const DEFAULT_SONG_TITLE = ["BTS", "Dynamite"];
 
 const MusicTrend = () => {
-  const { musicList = [] } = useSelector(state => state.trend);
+  const { musicList = [] } = useAppSelector(state => state.trend);
   const { width, height } = useWindowDimensions();
 
-  const getBestMusic = () => {
+  const getBestMusic = (): string[] => {
     if (musicList.length === 0) return DEFAULT_SONG_TITLE;
     return [musicList[0].singer, musicList[0].title];
   };
@@ -20,7 +20,7 @@ const MusicTrend = () => {
 
   const emptyHtml = (
     <tr>
-      <EmptyStyle colSpan="4">데이터가 없습니다.</EmptyStyle>
+      <EmptyStyle colSpan={4}>데이터가 없습니다.</EmptyStyle>
     </tr>
   );
 
@@ -135,5 +135,5 @@ const EmptyStyle = styled.td`
 const TBody = styled.tbody`
   & tr:nth-of-type(2n) {
     background-color: #eaeaea;
-
+  }
 `;

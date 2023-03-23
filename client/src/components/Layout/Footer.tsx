@@ -1,7 +1,7 @@
-import React from "react";
+import { ReactElement } from "react";
 import styled from "@emotion/styled";
 
-const Footer = () => {
+const Footer = (): ReactElement => {
   return (
     <Wrapper>
       <Inner>

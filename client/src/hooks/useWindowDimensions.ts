@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { windowObject } from "../types/types";
 
-function getWindowDimensions() {
+function getWindowDimensions(): windowObject {
   const { innerWidth: width, innerHeight: height } = window;
   return { width, height };
 }
 
-const useWindowDimensions = () => {
+const useWindowDimensions = (): windowObject => {
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
   useEffect(() => {

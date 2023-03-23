@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import PropTypes from "prop-types";
+import { ReactElement, useEffect, useRef } from "react";
 import * as DOMPurify from "dompurify";
 import styled from "@emotion/styled";
+import { KeywordTrendProps } from "../../types/types";
 
-const KeywordTrend = ({ getHeight, keyword, pastPubDate }) => {
+const KeywordTrend = ({ getHeight, keyword, pastPubDate }: KeywordTrendProps): ReactElement => {
   const liRef = useRef(null);
   const currentDate = new Date(keyword.pubDate).toLocaleDateString();
   const pastDate = pastPubDate && new Date(pastPubDate).toLocaleDateString();
@@ -40,18 +40,6 @@ const KeywordTrend = ({ getHeight, keyword, pastPubDate }) => {
       </Wrapper>
     </li>
   );
-};
-
-KeywordTrend.propTypes = {
-  getHeight: PropTypes.func.isRequired,
-  keyword: PropTypes.exact({
-    pubDate: PropTypes.string,
-    keyword: PropTypes.string,
-    traffic: PropTypes.string,
-    news: PropTypes.array,
-    imgURL: PropTypes.string,
-  }).isRequired,
-  pastPubDate: PropTypes.node.isRequired,
 };
 
 const KeywordDate = styled.span`

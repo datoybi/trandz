@@ -1,13 +1,13 @@
 /* eslint-disable react/no-array-index-key */
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import TVElement from "./TVElement";
+import { useAppSelector } from "../../store/hook";
 
 const TABLE_COUNT = 10;
 
 const TVTrend = () => {
-  const { TVList = [] } = useSelector(state => state.trend);
+  const { TVList = [] } = useAppSelector(state => state.trend);
   const firstTvList = TVList.filter((_, index) => index < TABLE_COUNT);
   const secondTvList = TVList.filter((_, index) => index >= TABLE_COUNT);
   const tableHtml = [firstTvList, secondTvList].map((list, index) => <TVElement key={`${index}`} tvList={list} />);

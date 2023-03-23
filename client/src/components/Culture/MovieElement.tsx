@@ -1,11 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+import { ReactElement } from "react";
 import styled from "@emotion/styled";
 import thumbUp from "../../assets/images/thumbs-up.png";
 import noImage from "../../assets/images/ico_noimage.png";
 import { MOVIE_BASE_URL } from "../../constants/url";
 
-const MovieElement = ({ movie }) => {
+const MovieElement = ({ movie }): ReactElement => {
   return (
     <Movie>
       <a href={`${MOVIE_BASE_URL}${movie.URL}`} target="_blank" rel="noopener noreferrer">
@@ -21,16 +20,6 @@ const MovieElement = ({ movie }) => {
       </a>
     </Movie>
   );
-};
-
-MovieElement.propTypes = {
-  movie: PropTypes.exact({
-    posterURL: PropTypes.string,
-    URL: PropTypes.string,
-    title: PropTypes.string,
-    rate: PropTypes.string,
-    ranking: PropTypes.number,
-  }).isRequired,
 };
 
 export default MovieElement;

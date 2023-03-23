@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import MovieElement from "./MovieElement";
+import { ReactElement } from "react";
 
-const MobileMovieTrend = ({ movieList }) => {
+const MobileMovieTrend = ({ movieList }): ReactElement => {
   return (
     <MobileSection>
       <h1 className="section__title">

@@ -1,16 +1,21 @@
-import React, { useRef, useState, forwardRef } from "react";
-import { useSelector } from "react-redux";
+import { useRef, useState, forwardRef, Ref, ReactElement } from "react";
 import styled from "@emotion/styled";
 import carouselNextIcon from "../../assets/images/next_icon.png";
 import carouselPrevIcon from "../../assets/images/prev_icon.png";
 import MovieElement from "./MovieElement";
 import MobileMovieTrend from "./MobileMovieTrend";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import { useAppSelector } from "../../store/hook";
 
-const MovieTrend = forwardRef((_, movieRef) => {
-  const items = useRef();
+interface BtnProp {
+  prev?: boolean;
+  onClick: () => void;
+}
+
+const MovieTrend = forwardRef((_: any, movieRef: Ref<HTMLDivElement>): ReactElement => {
+  const items = useRef<HTMLDivElement>();
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const { movieList = [] } = useSelector(state => state.trend);
+  const { movieList = [] } = useAppSelector(state => state.trend);
   const { width, height } = useWindowDimensions();
   const DISPLAY_COUNT = 10;
   const firstMovieList = movieList.filter((_, index) => index < DISPLAY_COUNT);
@@ -35,7 +40,7 @@ const MovieTrend = forwardRef((_, movieRef) => {
     </CarouselSections>
   );
 
-  const toggleOnClick = newIndex => {
+  const toggleOnClick = (newIndex: number): void => {
     items.current.style.transform = `translate3d(-${950 * newIndex}px, 0, 0)`;
     setCarouselIndex(newIndex);
   };
@@ -86,7 +91,7 @@ const CarouselWrapper = styled.div`
   overflow: hidden;
 `;
 
-const CarouselButton = styled.button`
+const CarouselButton = styled.button<BtnProp>`
   position: relative;
   font-size: 1rem;
   background: transparent;

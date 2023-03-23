@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect, forwardRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useRef, useState, useEffect, forwardRef, Ref } from "react";
+import { useAppSelector, useAppDispatch } from "../../store/hook";
 
 import styled from "@emotion/styled";
 import KeywordTrend from "./KeywordTrend";
@@ -8,12 +8,12 @@ import { actions } from "../../store/slice";
 import loadIcon from "../../assets/images/plus_icon.png";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 
-const KeywordsTrend = forwardRef((_, keywordRef) => {
-  const keywordContainer = useRef();
+const KeywordsTrend = forwardRef((_: any, keywordRef: Ref<HTMLDivElement>) => {
+  const keywordContainer = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
   const [keywordHeight, setKeywordHeight] = useState([]);
-  const { keywords = [] } = useSelector(state => state.trend);
-  const { keywordCount = 0 } = useSelector(state => state.trend);
-  const dispatch = useDispatch();
+  const { keywords = [] } = useAppSelector(state => state.trend);
+  const { keywordCount = 0 } = useAppSelector(state => state.trend);
   const { width, height } = useWindowDimensions();
 
   const calculateHeight = () => {
@@ -33,7 +33,7 @@ const KeywordsTrend = forwardRef((_, keywordRef) => {
     calculateHeight();
   }, [keywordHeight, keywordCount, width]);
 
-  const getHeight = height => {
+  const getHeight = (height: number): void => {
     setKeywordHeight(prev => [...prev, height]);
   };
 

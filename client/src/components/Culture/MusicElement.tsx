@@ -1,8 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { ReactElement } from "react";
 import styled from "@emotion/styled";
 
-const MusicElement = ({ song, rating }) => {
+const MusicElement = ({ song, rating }): ReactElement => {
   return (
     <Tr>
       <AlbumTd>
@@ -14,16 +13,6 @@ const MusicElement = ({ song, rating }) => {
       <Td>{song.album}</Td>
     </Tr>
   );
-};
-
-MusicElement.propTypes = {
-  song: PropTypes.exact({
-    title: PropTypes.string,
-    album: PropTypes.string,
-    singer: PropTypes.string,
-    albumCover: PropTypes.string,
-  }).isRequired,
-  rating: PropTypes.number.isRequired,
 };
 
 export default MusicElement;

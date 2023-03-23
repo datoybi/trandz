@@ -1,8 +1,13 @@
+// @ts-nocheck
+
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import Table from "../UI/Table";
 import { TV_BASE_URL } from "../../constants/url";
+
+interface StyleProp {
+  colSpan?: any;
+}
 
 const TVElement = ({ tvList = [] }) => {
   const emptyHtml = (
@@ -51,10 +56,6 @@ const TVElement = ({ tvList = [] }) => {
   );
 };
 
-TVElement.propTypes = {
-  tvList: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
 export default TVElement;
 
 const TableWrapper = styled.div`
@@ -75,7 +76,7 @@ const TableWrapper = styled.div`
   }
 `;
 
-const Th = styled.th`
+const Th = styled.th<StyleProp>`
   padding-top: 23px;
   padding-left: 35px;
   padding-bottom: 23px;
@@ -167,7 +168,7 @@ const Tr = styled.tr`
   }
 `;
 
-const EmptyStyle = styled.td`
+const EmptyStyle = styled.td<StyleProp>`
   text-align: center;
   padding-bottom: 1rem;
 `;

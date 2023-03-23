@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { ReactNode } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/css";
+import { TableProp } from "../../types/types";
 
-const Table = ({ className, children }) => {
+const Table = ({ className, children }: TableProp) => {
   const cssClass = className;
   return (
     <Wrapper>
@@ -16,14 +16,6 @@ const Table = ({ className, children }) => {
       </TableInner>
     </Wrapper>
   );
-};
-
-Table.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
-Table.defaultProps = {
-  className: "",
 };
 
 export default Table;

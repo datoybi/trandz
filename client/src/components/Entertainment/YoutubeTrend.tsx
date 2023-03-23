@@ -1,13 +1,12 @@
-import React, { forwardRef } from "react";
-import { useSelector } from "react-redux";
+import { forwardRef, Ref, ReactElement } from "react";
 import styled from "@emotion/styled";
+import { YOUTUBE_PLAY_URL } from "../../constants/url";
+import { useAppSelector } from "../../store/hook";
 
-const YOUTUBE_PLAY_URL = "https://www.youtube.com/watch?v=";
+const YouTubeTrend = forwardRef((_: any, youtubeRef: Ref<HTMLElement>) => {
+  const { youtubeList = [] } = useAppSelector(state => state.trend);
 
-const YouTubeTrend = forwardRef((_, youtubeRef) => {
-  const { youtubeList = [] } = useSelector(state => state.trend);
-
-  const contentsHtml = youtubeList.map((el, index) => (
+  const contentsHtml = youtubeList.map((el: any, index) => (
     <Item key={el.videoId}>
       <a href={`${YOUTUBE_PLAY_URL}${el.videoId}`} target="_blank" rel="noopener noreferrer">
         <YoutubeThumbnail>

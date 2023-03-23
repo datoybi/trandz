@@ -1,15 +1,12 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
 
-const Loading = () => {
+const Loading = (): ReactElement => {
   return (
     <Wrapper>
-      {/* <LoadingSentence>
-        데이터를 가져오고 있습니다. <br />
-      </LoadingSentence> */}
       <LoadingBar>
-        <LoadingBarInner></LoadingBarInner>
+        <LoadingBarInner />
       </LoadingBar>
     </Wrapper>
   );
@@ -44,10 +41,6 @@ const Wrapper = styled.div`
   align-items: center;
   animation: ${fadeOut} 2s;
   flex-direction: column;
-`;
-
-const LoadingSentence = styled.p`
-  line-height: 20px;
 `;
 
 const LoadingBar = styled.div`

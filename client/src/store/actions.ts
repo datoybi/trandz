@@ -6,7 +6,7 @@ const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
 const BASE_URL = "http://localhost:5000";
 
 export const fetchKeyword = () => {
-  return async dispatch => {
+  return async (dispatch: (arg0: { payload: any; type: "trend/getKeyWord" }) => void) => {
     // const url = `${BASE_URL}${PROXY}/keywords`;
     const url = `${PROXY}/keywords`;
 
@@ -16,7 +16,7 @@ export const fetchKeyword = () => {
 };
 
 export const fetchTopNews = () => {
-  return async dispatch => {
+  return async (dispatch: (arg0: { payload: any; type: "trend/getNews" }) => void) => {
     // const url = `${BASE_URL}${PROXY}/news`;
     const url = `${PROXY}/news`;
 
@@ -26,7 +26,7 @@ export const fetchTopNews = () => {
 };
 
 export const fetchYoutube = () => {
-  return async dispatch => {
+  return async (dispatch: (arg0: { payload: any; type: "trend/getYoutube" }) => void) => {
     const url = `${PROXY}/youtube`;
 
     const result = await sendRequest(url, ERROR_MESSAGES.YOUTUBE_FETCH_ERROR);
@@ -35,7 +35,7 @@ export const fetchYoutube = () => {
 };
 
 export const fetchMusic = () => {
-  return async dispatch => {
+  return async (dispatch: (arg0: { payload: any; type: "trend/getMusicList" }) => void) => {
     const url = `${PROXY}/music`;
     // const url = `${BASE_URL}${PROXY}/music`;
 
@@ -45,7 +45,7 @@ export const fetchMusic = () => {
 };
 
 export const fetchMovie = () => {
-  return async dispatch => {
+  return async (dispatch: (arg0: { payload: any; type: "trend/getMovieList" }) => void) => {
     // const url = `${BASE_URL}${PROXY}/movie`;
     const url = `${PROXY}/movie`;
 
@@ -55,7 +55,7 @@ export const fetchMovie = () => {
 };
 
 export const fetchTV = () => {
-  return async dispatch => {
+  return async (dispatch: (arg0: { payload: any; type: "trend/getTVList" }) => void) => {
     const url = `${BASE_URL}${PROXY}/tv`;
 
     const result = await sendRequest(url, ERROR_MESSAGES.TV_FETCH_ERROR);
@@ -64,7 +64,7 @@ export const fetchTV = () => {
 };
 
 export const fetchAllData = () => {
-  return async dispatch => {
+  return async (dispatch: (arg0: { payload: any; type: "trend/getAllData" }) => void) => {
     const url = `${PROXY}/all`;
 
     const result = await sendRequest(url, ERROR_MESSAGES.All_FETCH_ERROR);
@@ -73,7 +73,7 @@ export const fetchAllData = () => {
 };
 
 export const fetchSocial = () => {
-  return async dispatch => {
+  return async (dispatch: (arg0: { payload: any; type: "trend/getSocial" }) => void) => {
     // const url = `${BASE_URL}${PROXY}/social`;
     const url = `${PROXY}/social`;
 
@@ -83,7 +83,7 @@ export const fetchSocial = () => {
 };
 
 export const fetchEntertainment = () => {
-  return async dispatch => {
+  return async (dispatch: (arg0: { payload: any; type: "trend/getEntertainment" }) => void) => {
     // const url = `${BASE_URL}${PROXY}/entertainment`;
     const url = `${PROXY}/entertainment`;
 
@@ -93,7 +93,7 @@ export const fetchEntertainment = () => {
 };
 
 export const fetchCulture = () => {
-  return async dispatch => {
+  return async (dispatch: (arg0: { payload: any; type: "trend/getCulture" }) => void) => {
     // const url = `${BASE_URL}${PROXY}/culture`;
     const url = `${PROXY}/culture`;
 

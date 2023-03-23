@@ -1,14 +1,16 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { css, keyframes } from "@emotion/react";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 
+interface tabsProp {
+  fixed?: boolean;
+}
+
 const Nav = ({ refs }) => {
   const [homeRef, keywordRef, youtubeRef, movieRef] = refs;
-  const { _, height } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const [fixedClass, setFixedClass] = useState(false);
 
   const handleScroll = () => {
@@ -65,10 +67,6 @@ const Nav = ({ refs }) => {
   );
 };
 
-Nav.propTypes = {
-  refs: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
 export default Nav;
 
 const fadeIn = keyframes`
@@ -101,7 +99,7 @@ const fixedStyle = css`
   }
 `;
 
-const Tabs = styled.ul`
+const Tabs = styled.ul<tabsProp>`
   height: 50px;
   width: 100%;
   display: flex;
@@ -117,7 +115,6 @@ const Tabs = styled.ul`
     width: calc(100% - 20px);
     padding-left: 10px;
     padding-right: 10px;
-    /* height: 40px; */
   }
 `;
 

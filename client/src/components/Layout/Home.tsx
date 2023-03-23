@@ -1,7 +1,11 @@
-import React, { forwardRef } from "react";
+import { forwardRef, ReactNode, Ref } from "react";
 import styled from "@emotion/styled";
 
-const Home = forwardRef((_, homeRef) => {
+interface H1Prop {
+  subText?: boolean;
+}
+
+const Home = forwardRef((_: any, homeRef: Ref<HTMLDivElement>) => {
   return (
     <Wrapper ref={homeRef} data-cy="home-wrapper">
       <Text>요즘 뜨는 Trend는 뭐가 있을까요?</Text>
@@ -25,7 +29,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Text = styled.h1`
+const Text = styled.h1<H1Prop>`
   font-size: ${props => (props.subText ? "3rem" : "4.5rem")};
   margin-top: ${props => props.subText && "35px"};
   color: #fff;
@@ -40,7 +44,5 @@ const Text = styled.h1`
 
   @media (max-width: 768px) {
     font-size: ${props => (props.subText ? "2rem" : "3rem")};
-    /* padding-left: 10px;
-    padding-right: 10px; */
   }
 `;
