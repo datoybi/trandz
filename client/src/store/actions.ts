@@ -1,9 +1,9 @@
 import { actions } from "./slice";
 import { sendRequest } from "../utils/http";
 import ERROR_MESSAGES from "../constants/errorMessage";
+import { BASE_URL } from "../constants/url";
 
 const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
-const BASE_URL = "http://localhost:5000";
 
 export const fetchKeyword = () => {
   return async (dispatch: (arg0: { payload: any; type: "trend/getKeyWord" }) => void) => {
