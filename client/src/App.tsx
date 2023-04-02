@@ -13,7 +13,7 @@ const TVTrend = lazy(() => import("./components/Entertainment/TVTrend"));
 const MusicTrend = lazy(() => import("./components/Culture/MusicTrend"));
 const MovieTrend = lazy(() => import("./components/Culture/MovieTrend"));
 
-const REFRESH_DATA = 1000 * 60 * 60 * 3; // 3h
+const REFRESH_DATA = 1000 * 60 * 60 * 1; // 3h
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
