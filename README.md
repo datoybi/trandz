@@ -28,8 +28,10 @@
   <br/>
 </div>
 
-# 서비스 이용하기
+# 🚩trendz 방문하기
 
-### trendz 방문하기
+<a href="https://helpful-lokum-0bdb3e.netlify.app/">https://helpful-lokum-0bdb3e.netlify.app/</a>
 
-<a href="https://helpful-lokum-0bdb3e.netlify.app/">https://helpful-lokum-0bdb3e.netlify.app/
+# 🪟 회고 보기
+
+<a href="https://www.datoybi.com/trendz/">https://www.datoybi.com/trendz/</a>
