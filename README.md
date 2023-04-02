@@ -30,7 +30,7 @@
 
 # 🚩trendz 방문하기
 
-<a href="https://helpful-lokum-0bdb3e.netlify.app/">https://helpful-lokum-0bdb3e.netlify.app/</a> <br/><br/>
+<a href="https://trendmz.netlify.app/">https://trendmz.netlify.app/</a> <br/><br/>
 
 # 🪟 회고 보기
 
