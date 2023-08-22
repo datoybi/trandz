@@ -44,8 +44,9 @@ const getData = async () => {
   const htmlString = await sendRequest(KEYWORD_URL);
   keywordData = keywordsCrawling(htmlString);
 
-  const { records } = await sendRequest(NEWS_URL);
-  newsData = newsCrawling(records);
+  // const { records } = await sendRequest(NEWS_URL);
+  // newsData = newsCrawling(records);
+  newsData = [];
 
   (async () => {
     youtubeData = youtubeCrawling(await crawlData(YOUTUBE_TREND_URL));
@@ -95,8 +96,9 @@ const setKeyword = async (req, res) => {
 };
 
 const setNews = async (req, res) => {
-  const { records } = await sendRequest(NEWS_URL);
-  newsData = newsCrawling(records);
+  // const { records } = await sendRequest(NEWS_URL);
+  // newsData = newsCrawling(records);
+  newsData = [];
 };
 
 const setMusic = (req, res) => {
