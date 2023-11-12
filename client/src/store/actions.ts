@@ -2,7 +2,7 @@ import { actions } from "./slice";
 import { sendRequest } from "../utils/http";
 import ERROR_MESSAGES from "../constants/errorMessage";
 import { BASE_URL } from "../constants/url";
-
+import data from "../data.json";
 const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
 
 export const fetchKeyword = () => {
@@ -63,8 +63,8 @@ export const fetchAllData = () => {
   return async (dispatch: (arg0: { payload: any; type: "trend/getAllData" }) => void) => {
     const url = `${PROXY}/all`;
 
-    const result = await sendRequest(url, ERROR_MESSAGES.All_FETCH_ERROR);
-    dispatch(actions.getAllData(result));
+    // const result = await sendRequest(url, ERROR_MESSAGES.All_FETCH_ERROR);
+    dispatch(actions.getAllData(data));
   };
 };
 
