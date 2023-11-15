@@ -33,16 +33,19 @@ const keywordsCrawling = htmlString => {
   return result;
 };
 
-const newsCrawling = records => {
-  return Object.entries(records).reduce((acc, [_, value], index) => {
-    if (index >= MAX_TOP_NEWS) return acc;
-    const { promo } = value;
-    const headlines = !promo.headlines.shortHeadline ? promo.headlines.seoHeadline : promo.headlines.shortHeadline;
-    let url = !promo.locators.assetUri ? promo.locators.canonicalUrl : promo.locators.assetUri;
+const newsCrawling = content => {
+  console.log(content);
+  // const $ = cheerio.load(content);
 
-    if (url.includes(NEWS_BASE_URL)) [, url] = url.split(NEWS_BASE_URL);
-    return [...acc, [headlines, url]];
-  }, []);
+  // return Object.entries(records).reduce((acc, [_, value], index) => {
+  //   if (index >= MAX_TOP_NEWS) return acc;
+  //   const { promo } = value;
+  //   const headlines = !promo.headlines.shortHeadline ? promo.headlines.seoHeadline : promo.headlines.shortHeadline;
+  //   let url = !promo.locators.assetUri ? promo.locators.canonicalUrl : promo.locators.assetUri;
+
+  //   if (url.includes(NEWS_BASE_URL)) [, url] = url.split(NEWS_BASE_URL);
+  //   return [...acc, [headlines, url]];
+  // }, []);
 };
 
 const youtubeLoop = (selector, $) => {

@@ -3,7 +3,7 @@ const axios = require("axios");
 const { keywordsCrawling, musicCrawling, TVCrawling, newsCrawling, youtubeCrawling, movieCrawling } = require("./crawling");
 
 const KEYWORD_URL = "https://trends.google.co.kr/trends/trendingsearches/daily/rss?geo=KR";
-const NEWS_URL = "https://www.bbc.com/korean/mostread.json";
+const NEWS_URL = "https://www.bbc.com/korean";
 const YOUTUBE_TREND_URL = "https://kr.noxinfluencer.com/youtube-video-rank/top-kr-all-video-day";
 const MOVIE_URL = "https://movie.daum.net/ranking/reservation";
 const MUSIC_URL = "https://music.bugs.co.kr/chart/track/week/total";
@@ -44,9 +44,9 @@ const getData = async () => {
   const htmlString = await sendRequest(KEYWORD_URL);
   keywordData = keywordsCrawling(htmlString);
 
-  // const { records } = await sendRequest(NEWS_URL);
-  // newsData = newsCrawling(records);
-  newsData = [];
+  (async () => {
+    newsData = newsCrawling(await crawlData(NEWS_URL));
+  })();
 
   (async () => {
     youtubeData = youtubeCrawling(await crawlData(YOUTUBE_TREND_URL));
@@ -96,8 +96,8 @@ const setKeyword = async (req, res) => {
 };
 
 const setNews = async (req, res) => {
-  // const { records } = await sendRequest(NEWS_URL);
-  // newsData = newsCrawling(records);
+  const { records } = await sendRequest(NEWS_URL);
+  newsData = newsCrawling(records);
   newsData = [];
 };
 
