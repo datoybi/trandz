@@ -1,0 +1,14 @@
+.wrapper {
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: 980px;
+  margin-top: 160px;
+  padding: 0 20px;
+  /* border: 1px solid; */
+}

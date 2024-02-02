@@ -1,0 +1,29 @@
+.wrapper {
+  width: 100vw;
+  background-size: 400% 400%;
+}
+
+.content {
+  display: flex;
+  height: 6000px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid;
+}
+
+.text {
+  position: fixed;
+  color: #fff;
+  font-variation-settings: "wght" 700, "wdth" 500, "GRAD" 200;
+}
+
+.title {
+  font-size: 5rem;
+  top: 40%;
+}
+
+.subtitle {
+  font-size: 3.5rem;
+  top: 45%;
+}

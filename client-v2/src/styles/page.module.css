@@ -1,0 +1,19 @@
+/* @keyframes bg-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.landing {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(-45deg, #f06844, #ee4c54, #d45e95, #9c6ca6, #6583c1);
+  background-size: 400% 400%;
+  animation: bg-gradient 10s ease infinite;
+} */
