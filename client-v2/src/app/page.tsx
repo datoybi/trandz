@@ -10,11 +10,11 @@ export default function Home() {
     <main>
       <div className="App">
         <Landing />
+        <KeywordComponent />
         {/* <section className={styles.landing}>
           <Landing />
           <Nav />
         </section> */}
-        {/* <KeywordComponent /> */}
         {/* <YoutubeComponent /> */}
         {/* <Keywords /> */}
         {/*   <News />

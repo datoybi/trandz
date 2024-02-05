@@ -1,14 +1,24 @@
 .wrapper {
-  background-color: #fafafa;
+  /* background-color: #fafafa;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  /* height: 3000px; */
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
 }
 
 .content {
-  width: 980px;
+  /* width: 980px;
   margin-top: 160px;
-  padding: 0 20px;
-  /* border: 1px solid; */
+  padding: 0 20px; */
+  width: 1330px;
+  height: 760px;
+  border: 1px solid tomato;
+  background-color: #fff;
+  /* transform: scale(1.5); */
+  position: relative;
+  top: -650px;
 }
