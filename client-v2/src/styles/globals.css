@@ -30,3 +30,69 @@ a {
   position: absolute;
   cursor: pointer;
 }
+
+/* ***************************************************************************** */
+
+.container {
+  font-family: sans-serif;
+  height: 1000px;
+  display: flex;
+  justify-content: space-between;
+  /* gap: 50px; */
+  align-items: center;
+  border: 1px solid;
+}
+
+.item {
+  border-radius: 1.5rem;
+  background-color: navy;
+  color: white;
+
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  top: 50%;
+  left: 50%;
+}
+
+.box2 {
+  border: 1px solid;
+  width: 150px;
+  height: 50px;
+  border: 1px solid tomato;
+}
+
+.opened {
+  width: min(40rem, 95%);
+  height: calc(100% - 10rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  border: 1px solid red;
+  z-index: 10;
+  background-color: #fff;
+}
+
+.background {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(10, 10, 10, 0.7);
+}

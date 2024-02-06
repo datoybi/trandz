@@ -1,9 +1,10 @@
+// @ts-nocheck
 "use client";
 // import Title from "@/app/components/ui/title";
 // import KeywordList from "@/app/components/keywords/list";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import styles from "@/styles/components/keywords/keywords.module.css";
-import { motion } from "framer-motion";
+import { motion, LayoutGroup } from "framer-motion";
 import { keywords } from "@/api/placeholder-data";
 
 const TRANSITION_START = 100;
@@ -11,23 +12,78 @@ const TRANSITION_END = 300;
 const FLOATABLE_WIDTH = 1330 - 150;
 const FLOATABLE_HEIGHT = 760 - 50;
 
+function getRandomArbitrary(min: number, max: number) {
+  return Math.random() * (max - min) + min;
+}
+
+const Card = ({ keyword }) => {
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const [selected, setSelected] = useState(null);
+  const [dimension, setDimension] = useState({ width: 0, height: 0 });
+  // open된 상태에서 drag올리면 접히게 하기
+
+  // getRandomArbitrary(0, FLOATABLE_WIDTH);
+  // getRandomArbitrary(0, FLOATABLE_HEIGHT);
+
+  return (
+    <>
+      <motion.div
+        layout
+        ref={cardRef}
+        className={`box2 ${selected && "opened"}`}
+        initial={{ y: 0 }}
+        // whileInView={{ opacity: 1 }}
+        onClick={() => {
+          setSelected(keyword);
+          if (!selected) {
+            setDimension({ width: cardRef.current.clientWidth, height: cardRef.current?.clientHeight });
+          }
+        }}
+        // animate={{ x: getRandomArbitrary(0, FLOATABLE_WIDTH), y: getRandomArbitrary(0, FLOATABLE_HEIGHT) }}
+        transition={{
+          duration: 0.5,
+          repeat: 0,
+        }}
+      >
+        <p>{keyword}</p>
+        {selected && (
+          <p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+            deserunt mollit anim id est laborum.
+          </p>
+        )}
+      </motion.div>
+      {selected && <motion.div className="background" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onClick={() => setSelected(false)} />}
+    </>
+  );
+};
+
 const KeywordComponent = () => {
   const constraintsRef = useRef<HTMLDivElement | null>(null);
+  // const [selected, setSelected] = useState(null);
+  // const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
-  function getRandomArbitrary(min: number, max: number) {
-    return Math.random() * (max - min) + min;
-  }
+  // const [selectedDay, setSelectedDay] = useState<any>(null);
+  // const days = [25, 26, 27, 28, 29];
+  // console.log(selectedDay);
 
   return (
     <section className={styles.wrapper}>
       <article className={styles.content}>
-        <motion.div className="dragArea" ref={constraintsRef} />
+        {keywords.map(keyword => (
+          <Card key={keyword.keyword} keyword={keyword.keyword} />
+        ))}
+
+        {/* <motion.div className="dragArea" ref={constraintsRef} />
         {keywords.map(keyword => (
           <motion.div
             drag
             className="box"
             dragConstraints={constraintsRef}
             dragTransition={{ bounceStiffness: 600, bounceDamping: 2 }}
+            onClick={() => setSelected(keyword)}
             animate={{
               x: [
                 getRandomArbitrary(0, FLOATABLE_WIDTH),
@@ -51,7 +107,7 @@ const KeywordComponent = () => {
           >
             {keyword.keyword}
           </motion.div>
-        ))}
+        ))} */}
 
         {/* <Title>
           구글에 검색한 <br />
@@ -60,6 +116,24 @@ const KeywordComponent = () => {
         <KeywordList /> */}
       </article>
     </section>
+    // <ul className="container">
+    //   {days.map(day => (
+    //     <motion.li
+    //       key={day}
+    //       className="item"
+    //       initial={{ scale: 1 }}
+    //       onClick={() => setSelectedDay(day)}
+    //       animate={{
+    //         position: selectedDay === day ? "fixed" : "static",
+    //         borderRadius: selectedDay === day ? "0" : "1.5rem",
+    //         scale: selectedDay === day ? 10 : 1,
+    //       }}
+    //       transition={{ duration: 0.2 }}
+    //     >
+    //       {day}
+    //     </motion.li>
+    //   ))}
+    // </ul>
   );
 };
 
