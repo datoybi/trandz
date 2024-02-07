@@ -1,4 +1,3 @@
-import "normalize.css/normalize.css";
 import Landing from "./components/landing";
 import Nav from "./components/nav";
 import styles from "@/styles/page.module.css";

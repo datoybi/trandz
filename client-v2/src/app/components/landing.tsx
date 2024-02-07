@@ -12,8 +12,13 @@ const Landing = () => {
   const subtitleColor = useTransform(scrollYProgress, [0.5, 0.99], ["#fff", "#000"]);
   const background = useTransform(
     scrollYProgress,
-    [0.7, 1],
-    ["linear-gradient(-45deg, #f06844, #ee4c54, #d45e95, #9c6ca6,#6583c1)", "linear-gradient(-45deg, #f1f1f4, #f1f1f4, #f1f1f4, #f1f1f4,#f1f1f4)"],
+    [0.7, 0.9, 0.9, 1],
+    [
+      "linear-gradient(-45deg, #f06844, #ee4c54, #d45e95, #9c6ca6,#6583c1)",
+      "linear-gradient(-45deg, #f1f1f4, #f1f1f4, #f1f1f4, #f1f1f4,#f1f1f4)",
+      "linear-gradient(-45deg, #f1f1f4, #f1f1f4, #f1f1f4, #f1f1f4,#f1f1f4)",
+      "linear-gradient(-45deg, #f1f1f4, #f1f1f4, #f1f1f4, #f1f1f4,#f1f1f4)",
+    ],
   );
 
   return (

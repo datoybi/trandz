@@ -1,146 +1,115 @@
-// @ts-nocheck
 "use client";
-// import Title from "@/app/components/ui/title";
-// import KeywordList from "@/app/components/keywords/list";
-import { useRef, useState, useMemo, useEffect, useLayoutEffect } from "react";
+import { useRef, useState, useMemo } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import dayjs from "dayjs";
+import clsx from "clsx";
+import { motion } from "framer-motion";
 import styles from "@/styles/components/keywords/keywords.module.css";
-import { motion, LayoutGroup, Variants } from "framer-motion";
 import { keywords } from "@/api/placeholder-data";
 
-const TRANSITION_START = 100;
-const TRANSITION_END = 300;
 const FLOATABLE_WIDTH = 1330 - 150;
 const FLOATABLE_HEIGHT = 760 - 50;
+const OFFSCREEN_HEIGHT = FLOATABLE_HEIGHT;
+const backgrounds = ["#f06844", "#ee4c54", "#d45e95", "#9c6ca6", "#6583c1"];
 
 function getRandomArbitrary(min: number, max: number) {
   return Math.random() * (max - min) + min;
 }
 
-const cardVariants: Variants = {
-  offscreen: {},
+type selectedType = {
+  state: "initial" | "selected";
+  data: number | undefined;
 };
 
-const Card = ({ keyword }) => {
-  const cardRef = useRef<HTMLDivElement | null>(null);
+// TODO: open된 상태에서 drag올리면 접히게 하기
 
-  const [selected, setSelected] = useState(null); // null is initial, false is unselected keyword, keyword
-  // open된 상태에서 drag올리면 접히게 하기
+const Card = ({ keyword }: { keyword: any }) => {
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const [selected, setSelected] = useState<selectedType>({ state: "initial", data: undefined });
+
   const x = useMemo(() => getRandomArbitrary(0, FLOATABLE_WIDTH), []);
   const y = useMemo(() => getRandomArbitrary(0, FLOATABLE_HEIGHT), []);
+  const bgIndex = useMemo(() => Math.floor(getRandomArbitrary(0, backgrounds.length)), []);
   const delay = getRandomArbitrary(0, 3);
+  const isExpanded = selected.state === "selected" && selected.data;
 
   return (
     <>
       <motion.div
         layout
         ref={cardRef}
-        className={`box2 ${selected && "opened"}`}
-        initial={{ y: FLOATABLE_HEIGHT + 100, x: x, opacity: 0 }}
-        whileInView={{ x: selected ? 0 : x, y: selected ? 0 : y, opacity: 1 }}
+        className={clsx(styles.keywords, { [styles.opened]: isExpanded })}
+        initial={{
+          y: FLOATABLE_HEIGHT + 100,
+          x: x,
+          opacity: 0,
+          borderColor: backgrounds[bgIndex],
+        }}
+        whileInView={{
+          x: isExpanded ? 0 : x,
+          y: isExpanded ? 0 : y,
+          opacity: 1,
+        }}
         viewport={{ once: true, amount: 0.8 }}
         onClick={() => {
-          setSelected(keyword);
+          setSelected({ state: "selected", data: keyword.keyword });
         }}
         transition={{
-          type: selected === null ? "spring" : "",
-          duration: 0.3,
-          damping: 12,
+          type: selected.state === "initial" ? "spring" : "",
+          duration: 0.25,
+          damping: 11,
           repeat: 0,
-
-          delay: selected === null ? delay : 0,
+          delay: selected.state === "initial" ? delay : 0,
         }}
       >
-        <p>{keyword}</p>
-        {/* 나중에 expandItem으로 빼도 될듯 */}
-        {selected && (
-          <p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.
-          </p>
+        {/* TODO: 나중에 expandItem으로 빼도 될듯 */}
+        {isExpanded ? (
+          <div className={styles.expandCard}>
+            <Image src={keyword.imgURL} className={styles.expandImage} alt={`${keyword.keyword} 대표사진`} width={100} height={100} />
+            <h3 className={styles.expandKeyword}>{keyword.keyword}</h3>
+            <p className={styles.expandDate}>{dayjs(keyword.pubDate).format("YYYY.MM.DD")}</p>
+            <span className={styles.expandBadge}>{keyword.traffic}회 이상 검색</span>
+            <ul className={styles.expandNewsList}>
+              <li>
+                <Link href={keyword.news[0].url} className={styles.expandNewsItem} target="_blank" rel="noopener noreferrer">
+                  <span className={styles.newsItemTitle} dangerouslySetInnerHTML={{ __html: keyword.news[0].title }} />
+                  <span className={styles.newsItemSource}>{keyword.news[0].source}</span>
+                </Link>
+              </li>
+              <li>
+                <Link href={keyword.news[1].url} className={styles.expandNewsItem} target="_blank" rel="noopener noreferrer">
+                  <span className={styles.newsItemTitle} dangerouslySetInnerHTML={{ __html: keyword.news[1].title }} />
+                  <span className={styles.newsItemSource}>{keyword.news[1].source}</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <p className={styles.reducedText}>{keyword.keyword}</p>
         )}
       </motion.div>
-      {selected && <motion.div className="background" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onClick={() => setSelected(false)} />}
+      {isExpanded && (
+        <motion.div
+          className={styles.backdrop}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => setSelected({ state: "selected", data: undefined })}
+        />
+      )}
     </>
   );
 };
 
 const KeywordComponent = () => {
-  const constraintsRef = useRef<HTMLDivElement | null>(null);
-
-  // const [selected, setSelected] = useState(null);
-  // const [dimension, setDimension] = useState({ width: 0, height: 0 });
-
-  // const [selectedDay, setSelectedDay] = useState<any>(null);
-  // const days = [25, 26, 27, 28, 29];
-  // console.log(selectedDay);
-
   return (
     <section className={styles.wrapper}>
       <article className={styles.content}>
         {keywords.map(keyword => (
-          <Card key={keyword.keyword} keyword={keyword.keyword} />
+          <Card key={keyword.keyword} keyword={keyword} />
         ))}
-
-        {/* <motion.div className="dragArea" ref={constraintsRef} />
-        {keywords.map(keyword => (
-          <motion.div
-            drag
-            className="box"
-            dragConstraints={constraintsRef}
-            dragTransition={{ bounceStiffness: 600, bounceDamping: 2 }}
-            onClick={() => setSelected(keyword)}
-            animate={{
-              x: [
-                getRandomArbitrary(0, FLOATABLE_WIDTH),
-                getRandomArbitrary(0, FLOATABLE_WIDTH),
-                getRandomArbitrary(0, FLOATABLE_WIDTH),
-                getRandomArbitrary(0, FLOATABLE_WIDTH),
-                getRandomArbitrary(0, FLOATABLE_WIDTH),
-              ],
-              y: [
-                getRandomArbitrary(0, FLOATABLE_HEIGHT),
-                getRandomArbitrary(0, FLOATABLE_HEIGHT),
-                getRandomArbitrary(0, FLOATABLE_HEIGHT),
-                getRandomArbitrary(0, FLOATABLE_HEIGHT),
-                getRandomArbitrary(0, FLOATABLE_HEIGHT),
-              ],
-            }}
-            transition={{
-              duration: getRandomArbitrary(TRANSITION_START, TRANSITION_END),
-              repeat: Infinity,
-            }}
-          >
-            {keyword.keyword}
-          </motion.div>
-        ))} */}
-
-        {/* <Title>
-          구글에 검색한 <br />
-          인기 급상승 키워드를 확인해보세요.
-        </Title>
-        <KeywordList /> */}
       </article>
     </section>
-    // <ul className="container">
-    //   {days.map(day => (
-    //     <motion.li
-    //       key={day}
-    //       className="item"
-    //       initial={{ scale: 1 }}
-    //       onClick={() => setSelectedDay(day)}
-    //       animate={{
-    //         position: selectedDay === day ? "fixed" : "static",
-    //         borderRadius: selectedDay === day ? "0" : "1.5rem",
-    //         scale: selectedDay === day ? 10 : 1,
-    //       }}
-    //       transition={{ duration: 0.2 }}
-    //     >
-    //       {day}
-    //     </motion.li>
-    //   ))}
-    // </ul>
   );
 };
 
