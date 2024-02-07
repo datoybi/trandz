@@ -2,9 +2,9 @@
 "use client";
 // import Title from "@/app/components/ui/title";
 // import KeywordList from "@/app/components/keywords/list";
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo, useEffect, useLayoutEffect } from "react";
 import styles from "@/styles/components/keywords/keywords.module.css";
-import { motion, LayoutGroup } from "framer-motion";
+import { motion, LayoutGroup, Variants } from "framer-motion";
 import { keywords } from "@/api/placeholder-data";
 
 const TRANSITION_START = 100;
@@ -16,14 +16,18 @@ function getRandomArbitrary(min: number, max: number) {
   return Math.random() * (max - min) + min;
 }
 
+const cardVariants: Variants = {
+  offscreen: {},
+};
+
 const Card = ({ keyword }) => {
   const cardRef = useRef<HTMLDivElement | null>(null);
-  const [selected, setSelected] = useState(null);
-  const [dimension, setDimension] = useState({ width: 0, height: 0 });
-  // open된 상태에서 drag올리면 접히게 하기
 
-  // getRandomArbitrary(0, FLOATABLE_WIDTH);
-  // getRandomArbitrary(0, FLOATABLE_HEIGHT);
+  const [selected, setSelected] = useState(null); // null is initial, false is unselected keyword, keyword
+  // open된 상태에서 drag올리면 접히게 하기
+  const x = useMemo(() => getRandomArbitrary(0, FLOATABLE_WIDTH), []);
+  const y = useMemo(() => getRandomArbitrary(0, FLOATABLE_HEIGHT), []);
+  const delay = getRandomArbitrary(0, 3);
 
   return (
     <>
@@ -31,21 +35,23 @@ const Card = ({ keyword }) => {
         layout
         ref={cardRef}
         className={`box2 ${selected && "opened"}`}
-        initial={{ y: 0 }}
-        // whileInView={{ opacity: 1 }}
+        initial={{ y: FLOATABLE_HEIGHT + 100, x: x, opacity: 0 }}
+        whileInView={{ x: selected ? 0 : x, y: selected ? 0 : y, opacity: 1 }}
+        viewport={{ once: true, amount: 0.8 }}
         onClick={() => {
           setSelected(keyword);
-          if (!selected) {
-            setDimension({ width: cardRef.current.clientWidth, height: cardRef.current?.clientHeight });
-          }
         }}
-        // animate={{ x: getRandomArbitrary(0, FLOATABLE_WIDTH), y: getRandomArbitrary(0, FLOATABLE_HEIGHT) }}
         transition={{
-          duration: 0.5,
+          type: selected === null ? "spring" : "",
+          duration: 0.3,
+          damping: 12,
           repeat: 0,
+
+          delay: selected === null ? delay : 0,
         }}
       >
         <p>{keyword}</p>
+        {/* 나중에 expandItem으로 빼도 될듯 */}
         {selected && (
           <p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -62,6 +68,7 @@ const Card = ({ keyword }) => {
 
 const KeywordComponent = () => {
   const constraintsRef = useRef<HTMLDivElement | null>(null);
+
   // const [selected, setSelected] = useState(null);
   // const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
