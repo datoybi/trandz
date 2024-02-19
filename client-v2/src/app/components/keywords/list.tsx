@@ -1,24 +1,16 @@
-import { keywords } from "@/api/placeholder-data";
-import KeywordItem from "./item";
+import KeywordItem from "@/app/components/keywords/item";
 import styles from "@/styles/components/keywords/list.module.css";
-import { PlusCircleIcon } from "@heroicons/react/24/solid";
+import { keywords } from "@/api/placeholder-data";
 
 const KeywordList = () => {
-  // console.log(keywords);
-
   return (
-    <>
-      <ul>
-        {keywords.map((keyword, index) => (
-          <KeywordItem
-            key={`${new Date(keyword.pubDate).getTime()}_${keyword.keyword}`}
-            keyword={keyword}
-            pastPubDate={index !== 0 && keywords[index - 1].pubDate}
-          />
+    <section className={styles.wrapper}>
+      <article className={styles.content}>
+        {keywords.map(keyword => (
+          <KeywordItem key={keyword.keyword} keyword={keyword} />
         ))}
-      </ul>
-      <PlusCircleIcon width={40} className={styles.plusButton} />
-    </>
+      </article>
+    </section>
   );
 };
 

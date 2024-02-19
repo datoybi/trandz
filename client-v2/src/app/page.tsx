@@ -1,15 +1,16 @@
 import Landing from "./components/landing";
-import Nav from "./components/nav";
-import styles from "@/styles/page.module.css";
-import KeywordComponent from "@/app/components/keywords/keywords";
-import YoutubeComponent from "./components/youtube/youyube";
+// import Nav from "./components/nav";
+// import styles from "@/styles/page.module.css";
+import KeywordList from "@/app/components/keywords/list";
+// import YoutubeComponent from "./components/youtube/youyube";
 
 export default function Home() {
   return (
     <main>
       <div className="App">
         <Landing />
-        <KeywordComponent />
+        <KeywordList />
+        {/* <YoutubeComponent /> */}
         {/* <section className={styles.landing}>
           <Landing />
           <Nav />

@@ -1,27 +1,15 @@
-.container {
-  border: 1px solid;
-  width: 980px;
-  padding: 0 20px;
+.wrapper {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
 }
 
-.plusButton {
-  background-size: cover;
-  width: 40px;
+.content {
+  width: 1330px;
+  height: 760px;
+  background-color: #fff;
   position: relative;
-  display: block;
-  margin: 0 auto;
-  border: 0;
-  cursor: pointer;
-  background: transparent;
-  top: -21px;
-  transition: transform 0.3s;
-  margin-bottom: -40px;
-}
-
-.plusButton:hover {
-  opacity: 0.6;
-}
-
-.plusButton:active {
-  transform: rotate(1turn);
+  top: -650px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 60px;
 }

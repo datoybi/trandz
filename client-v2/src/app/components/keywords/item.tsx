@@ -1,45 +1,73 @@
-import Link from "next/link";
-import Image from "next/image";
+"use client";
+import { useRef, useState, useMemo } from "react";
+import clsx from "clsx";
+import { motion } from "framer-motion";
 import styles from "@/styles/components/keywords/item.module.css";
+import ExpandItem from "./expand-item";
 
-const KeywordItem = ({ keyword, pastPubDate }: any) => {
-  const currentDate = new Date(keyword.pubDate).toLocaleDateString();
-  const pastDate = pastPubDate && new Date(pastPubDate).toLocaleDateString();
-  const showDate = pastDate !== currentDate;
+const FLOATABLE_WIDTH = 1330 - 150;
+const FLOATABLE_HEIGHT = 760 - 50;
+const backgrounds = ["#f06844", "#ee4c54", "#d45e95", "#9c6ca6", "#6583c1"];
 
-  const keywordNewsHtml = keyword.news.map((newsElement: any) => (
-    <Link
-      className={styles.newsList}
-      href={newsElement.url}
-      key={newsElement.url}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span className={styles.newsTitle} dangerouslySetInnerHTML={{ __html: newsElement.title }} />
-      <span className={styles.newsSource}>{newsElement.source}</span>
-    </Link>
-  ));
+function getRandomArbitrary(min: number, max: number) {
+  return Math.random() * (max - min) + min;
+}
+
+type selectedType = {
+  state: "initial" | "selected";
+  data: number | undefined;
+};
+
+const KeywordItem = ({ keyword }: { keyword: any }) => {
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const [selected, setSelected] = useState<selectedType>({ state: "initial", data: undefined });
+
+  const x = useMemo(() => getRandomArbitrary(0, FLOATABLE_WIDTH), []);
+  const y = useMemo(() => getRandomArbitrary(0, FLOATABLE_HEIGHT), []);
+  const bgIndex = useMemo(() => Math.floor(getRandomArbitrary(0, backgrounds.length)), []);
+  const delay = getRandomArbitrary(0, 3);
+  const isExpanded = selected.state === "selected" && selected.data;
 
   return (
-    <li>
-      {showDate && <span className={styles.keywordDate}>{currentDate}</span>}
-      <div className={styles.keywordItem}>
-        <span className={styles.keywordTitle}>{keyword.keyword}</span>
-        <div className={styles.keywordTraffic}>
-          {keyword.traffic}
-          <span>회 이상 검색</span>
-        </div>
-        <div className={styles.keywordNews}>
-          <div className={styles.newsLink}>{keywordNewsHtml}</div>
-          <Image
-            src={keyword.imgURL}
-            alt={`${keyword.keyword} 대표사진`}
-            width={100}
-            height={100}
-          />
-        </div>
-      </div>
-    </li>
+    <>
+      <motion.div
+        layout
+        ref={cardRef}
+        className={clsx(styles.keywords, { [styles.opened]: isExpanded })}
+        initial={{
+          y: FLOATABLE_HEIGHT + 100,
+          x: x,
+          opacity: 0,
+          borderColor: backgrounds[bgIndex],
+        }}
+        whileInView={{
+          x: isExpanded ? 0 : x,
+          y: isExpanded ? 0 : y,
+          opacity: 1,
+        }}
+        viewport={{ once: true, amount: 0.8 }}
+        onClick={() => {
+          setSelected({ state: "selected", data: keyword.keyword });
+        }}
+        transition={{
+          type: selected.state === "initial" ? "spring" : "",
+          duration: 0.25,
+          damping: 11,
+          repeat: 0,
+          delay: selected.state === "initial" ? delay : 0,
+        }}
+      >
+        {isExpanded ? <ExpandItem keyword={keyword} /> : <p className={styles.reducedText}>{keyword.keyword}</p>}
+      </motion.div>
+      {isExpanded && (
+        <motion.div
+          className={styles.backdrop}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => setSelected({ state: "selected", data: undefined })}
+        />
+      )}
+    </>
   );
 };
 
